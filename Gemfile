@@ -3,7 +3,6 @@ source "https://gems.ruby-china.org"
 gem 'thin'
 gem 'sinatra'
 gem 'json'
-gem 'mongoid'
 gem 'redis'
 
 group :development do
