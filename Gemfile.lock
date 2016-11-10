@@ -1,6 +1,7 @@
 GEM
   remote: https://gems.ruby-china.org/
   specs:
+    byebug (9.0.6)
     daemons (1.2.4)
     domain_name (0.5.20160615)
       unf (>= 0.0.5, < 1.0.0)
@@ -40,6 +41,7 @@ GEM
     redis (3.3.1)
     rerun (0.8.2)
       listen (~> 1.0.3)
+    rufus-scheduler (3.2.2)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -58,10 +60,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   json
   mechanize
   redis
   rerun (~> 0.8.2)
+  rufus-scheduler
   sinatra
   thin
 

@@ -61,10 +61,10 @@
     <h1>直播</h1>
     <div class="live">
         <ul>
-            <% @lives.each do |live_json| %>
+            <% @lives.each do |idx, live_json| %>
                 <% live = JSON.parse(live_json) %>
                 <li>
-                    <a href="<%= live['live_url'] %>" target="_blank">
+                    <a href="<%= live['url'] %>" target="_blank">
                         <img src="<%= live['img_url'] %>" alt="" />
                     </a>
                     <div class="mes">
@@ -73,7 +73,6 @@
                     </div>
                 </li>
             <% end %>
-
         </ul>
     </div>
 </div>
