@@ -18,7 +18,6 @@
     .live ul li {
         width: 280px;
         height: 197px;
-        border: 1px solid #000;
         list-style-type: none;
         float: left;
         margin-right: 24px;
@@ -62,15 +61,19 @@
     <h1>直播</h1>
     <div class="live">
         <ul>
-            <li>
-                <a href="#">
-                    <img src="" alt="" />
-                </a>
-                <div class="mes">
-                    <div>1</div>
-                    <div>2</div>
-                </div>
-            </li>
+            <% @lives.each do |live_json| %>
+                <% live = JSON.parse(live_json) %>
+                <li>
+                    <a href="<%= live['live_url'] %>" target="_blank">
+                        <img src="<%= live['img_url'] %>" alt="" />
+                    </a>
+                    <div class="mes">
+                        <div><%= live["name"] %></div>
+                        <div><%= live["num"] %></div>
+                    </div>
+                </li>
+            <% end %>
+
         </ul>
     </div>
 </div>
