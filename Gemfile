@@ -4,6 +4,7 @@ gem 'thin'
 gem 'sinatra'
 gem 'json'
 gem 'mongoid'
+gem 'redis'
 
 group :development do
     # 修改route不必重启server, rerun 'ruby main.rb'

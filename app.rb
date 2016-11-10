@@ -9,14 +9,9 @@ class App < Sinatra::Base
     Mongoid.load!(File.expand_path(File.join("config", "mongoid.yml")), environment)
 
     configure :development do
-        helpers do
-        end
-
-        before do
-        end
-
-        get '/users' do
-            User.all.map { |u| { name: u.name } }.to_json
+        get '/' do
+            @name = "james"
+            erb :index
         end
     end
 end

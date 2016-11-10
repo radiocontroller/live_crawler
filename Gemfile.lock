@@ -38,6 +38,7 @@ GEM
       ffi (>= 0.5.0)
     rb-kqueue (0.2.4)
       ffi (>= 0.5.0)
+    redis (3.3.1)
     rerun (0.8.2)
       listen (~> 1.0.3)
     sinatra (1.4.7)
@@ -59,6 +60,7 @@ PLATFORMS
 DEPENDENCIES
   json
   mongoid
+  redis
   rerun (~> 0.8.2)
   sinatra
   thin
