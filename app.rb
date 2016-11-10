@@ -19,7 +19,7 @@ class App < Sinatra::Base
     configure :development do
         get '/' do
             @lives = $redis.hgetall(LIVES_KEY)
-            erb :index
+            erb :index, :layout => :'layout'
         end
     end
 end
