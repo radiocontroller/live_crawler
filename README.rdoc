@@ -4,3 +4,12 @@ sinatra框架demo
 
 * 爬取斗鱼在线全部直播间显示
 * 数据存储在redis, 每隔15秒重新获取更新
+
+安装并且启动redis服务后:
+
+* git clone git@github.com:radiocontroller/crawler_with_sinatra.git
+* cd crawler_with_sinatra
+* bundle install
+* thin start
+
+访问 http://localhost:3000 即可
