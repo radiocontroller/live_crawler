@@ -6,7 +6,8 @@ class Crawler
 
     def execute
         begin
-            $logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl")
+            logger = Logger.new("*.log")
+            logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl")
             now_f = Time.now.to_f
             agent = Mechanize.new
             agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -26,7 +27,7 @@ class Crawler
                 $redis.hset(App::LIVES_KEY, idx, JSON.generate(data))
             end
         rescue Exception => e
-            $logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
+            logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
         end
     end
 end

@@ -7,6 +7,7 @@ gem 'redis'
 gem 'mechanize'
 gem 'activesupport'
 gem 'whenever', :require => false
+gem 'rake'
 
 group :development do
     # 修改route不必重启server, rerun 'ruby app.rb'

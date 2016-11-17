@@ -6,8 +6,6 @@ require './crawler'
 
 class App < Sinatra::Base
     $redis = Redis.new
-    $logger = Logger.new("*.log")
-
     LIVES_KEY = "lives:key" # 缓存key
 
     configure :production do

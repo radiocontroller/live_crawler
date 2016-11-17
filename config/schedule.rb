@@ -21,5 +21,5 @@
 
 # crontab定时器最小单位为分钟，若改秒进入配置文件中改
 every 1.minute do
-  runner "Crawler.instance.execute"
+  rake "crawler:crawl"
 end
