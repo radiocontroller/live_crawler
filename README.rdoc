@@ -1,3 +1,28 @@
 == README
 
-此为部署分支
+此为部署分支(deploy), 代码与master分支有差异, 考虑到可以起多个进程, 定时任务改为linux的crontab, url: http://live.rcer.top
+
+使用:
+* git clone git@github.com:radiocontroller/crawler_with_sinatra.git
+
+* cd crawler_with_sinatra
+
+* git checkout deploy
+
+* git pull
+
+* bundle install
+
+* whenever \-\-update\-crontab
+
+* crontab -e (修改定时器)
+
+\* \* \* \* \* sleep 15; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl --silent'
+
+\* \* \* \* \* sleep 30; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl --silent'
+
+\* \* \* \* \* sleep 45; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl --silent'
+
+\* \* \* \* \* sleep 60; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl --silent'
+
+* thin start -s3 -e production (起了三个进程, 默认端口: 3000, 3001, 3002)
