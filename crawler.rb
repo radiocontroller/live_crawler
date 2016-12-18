@@ -352,6 +352,176 @@ class Crawler
         end
     end
 
+    def crawl_wangzhe
+        begin
+            @@redis.del(App::LIVE_SHOUWANG_KEY)
+
+            # 斗鱼直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl douyu wangzhe lives")
+            page = @@agent.get("https://www.douyu.com/directory/game/wzry")
+            lives = page.search("ul#live-list-contentbox li")
+            lives.each_with_index do |live, idx|
+                url = "https://www.douyu.com" + live.search("a").attr("href").text
+                img_url = live.search("img").attr("data-original").text
+                name = live.search("span.dy-name").text
+                num = live.search("span.dy-num").text
+                data = {
+                    url: url,
+                    img_url: img_url,
+                    name: name,
+                    platform: "斗鱼"
+                }
+                @@redis.zadd(App::LIVE_WANGZHE_KEY, convert_float(num), JSON.generate(data))
+            end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl douyu wangzhe lives")
+
+            # 熊猫直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl xiongmao wangzhe lives")
+            page = @@agent.get("http://www.panda.tv/cate/kingglory")
+            lives = page.search("ul#sortdetail-container li")
+            lives.each_with_index do |live, idx|
+                url = "http://www.panda.tv" + live.search("a").attr("href").text
+                img_url = live.search("img").attr("data-original").text
+                name = live.search("span.video-nickname").text
+                num = live.search("span.video-number").text
+                data = {
+                    url: url,
+                    img_url: img_url,
+                    name: name,
+                    platform: "熊猫"
+                }
+                @@redis.zadd(App::LIVE_WANGZHE_KEY, convert_float(num), JSON.generate(data))
+            end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl xiongmao wangzhe lives")
+
+            # 虎牙直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl huya wangzhe lives")
+            page = @@agent.get("http://www.huya.com/g/2336")
+            lives = page.search("ul#js-live-list li")
+            lives.each_with_index do |live, idx|
+                url = live.search("a").attr("href").text
+                img_url = live.search("img").attr("data-original").text
+                name = live.search("i.nick").text
+                num = live.search("i.js-num").text
+                data = {
+                    url: url,
+                    img_url: img_url,
+                    name: name,
+                    platform: "虎牙"
+                }
+                @@redis.zadd(App::LIVE_WANGZHE_KEY, convert_float(num), JSON.generate(data))
+            end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl huya wangzhe lives")
+
+            # 战旗直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl zhanqi wangzhe lives")
+            page = @@agent.get("https://www.zhanqi.tv/games/wangzherongyao")
+            lives = page.search("ul.js-room-list-ul li")
+            lives.each_with_index do |live, idx|
+                url = "http://www.zhanqi.tv" + live.search("a").attr("href").text
+                img_url = live.search("img").first.attributes["src"].value
+                name = live.search("span.anchor").text
+                num = live.search("span.dv").first.text
+                data = {
+                    url: url,
+                    img_url: img_url,
+                    name: name,
+                    platform: "战旗"
+                }
+                @@redis.zadd(App::LIVE_WANGZHE_KEY, convert_float(num), JSON.generate(data))
+            end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl zhanqi wangzhe lives")
+
+        rescue Exception => e
+            @@logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
+        end
+    end
+
+    def crawl_dota2
+        begin
+            @@redis.del(App::LIVE_DOTA2_KEY)
+
+            # 斗鱼直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl douyu dota2 lives")
+            page = @@agent.get("https://www.douyu.com/directory/game/DOTA2")
+            lives = page.search("ul#live-list-contentbox li")
+            lives.each_with_index do |live, idx|
+                url = "https://www.douyu.com" + live.search("a").attr("href").text
+                img_url = live.search("img").attr("data-original").text
+                name = live.search("span.dy-name").text
+                num = live.search("span.dy-num").text
+                data = {
+                    url: url,
+                    img_url: img_url,
+                    name: name,
+                    platform: "斗鱼"
+                }
+                @@redis.zadd(App::LIVE_DOTA2_KEY, convert_float(num), JSON.generate(data))
+            end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl douyu dota2 lives")
+
+            # 熊猫直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl xiongmao dota2 lives")
+            page = @@agent.get("http://www.panda.tv/cate/dota2")
+            lives = page.search("ul#sortdetail-container li")
+            lives.each_with_index do |live, idx|
+                url = "http://www.panda.tv" + live.search("a").attr("href").text
+                img_url = live.search("img").attr("data-original").text
+                name = live.search("span.video-nickname").text
+                num = live.search("span.video-number").text
+                data = {
+                    url: url,
+                    img_url: img_url,
+                    name: name,
+                    platform: "熊猫"
+                }
+                @@redis.zadd(App::LIVE_DOTA2_KEY, convert_float(num), JSON.generate(data))
+            end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl xiongmao dota2 lives")
+
+            # 虎牙直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl huya dota2 lives")
+            page = @@agent.get("http://www.huya.com/g/7")
+            lives = page.search("ul#js-live-list li")
+            lives.each_with_index do |live, idx|
+                url = live.search("a").attr("href").text
+                img_url = live.search("img").attr("data-original").text
+                name = live.search("i.nick").text
+                num = live.search("i.js-num").text
+                data = {
+                    url: url,
+                    img_url: img_url,
+                    name: name,
+                    platform: "虎牙"
+                }
+                @@redis.zadd(App::LIVE_DOTA2_KEY, convert_float(num), JSON.generate(data))
+            end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl huya dota2 lives")
+
+            # 战旗直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl zhanqi dota2 lives")
+            page = @@agent.get("https://www.zhanqi.tv/games/dota2#spm=slider.left")
+            lives = page.search("ul.js-room-list-ul li")
+            lives.each_with_index do |live, idx|
+                url = "http://www.zhanqi.tv" + live.search("a").attr("href").text
+                img_url = live.search("img").first.attributes["src"].value
+                name = live.search("span.anchor").text
+                num = live.search("span.dv").first.text
+                data = {
+                    url: url,
+                    img_url: img_url,
+                    name: name,
+                    platform: "战旗"
+                }
+                @@redis.zadd(App::LIVE_DOTA2_KEY, convert_float(num), JSON.generate(data))
+            end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl zhanqi dota2 lives")
+
+        rescue Exception => e
+            @@logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
+        end
+    end
+
     private
 
         # 在线人数字符串转浮点型

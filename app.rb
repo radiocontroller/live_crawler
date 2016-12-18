@@ -12,6 +12,8 @@ class App < Sinatra::Base
     LIVE_LUSHI_KEY = "live:lushi:key"
     LIVE_CF_KEY = "live:cf:key"
     LIVE_SHOUWANG_KEY = "live:shouwang:key"
+    LIVE_WANGZHE_KEY = "live:wangzhe:key"
+    LIVE_DOTA2_KEY = "live:dota2:key"
     $redis = Redis.new
 
     configure :production do
@@ -35,6 +37,18 @@ class App < Sinatra::Base
 
         get '/overwatch' do
             @lives = $redis.zrevrange(LIVE_SHOUWANG_KEY, 0, -1, :with_scores => true)
+                        .paginate(page: params[:page] || 1, per_page: 80)
+            erb :index, :layout => :'layout'
+        end
+
+        get '/kingglory' do
+            @lives = $redis.zrevrange(LIVE_WANGZHE_KEY, 0, -1, :with_scores => true)
+                        .paginate(page: params[:page] || 1, per_page: 80)
+            erb :index, :layout => :'layout'
+        end
+
+        get '/DOTA2' do
+            @lives = $redis.zrevrange(LIVE_DOTA2_KEY, 0, -1, :with_scores => true)
                         .paginate(page: params[:page] || 1, per_page: 80)
             erb :index, :layout => :'layout'
         end

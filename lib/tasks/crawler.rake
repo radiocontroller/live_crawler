@@ -22,4 +22,14 @@ namespace :crawler do
       Crawler.instance.crawl_shouwang
   end
 
+  desc "crawl wangzhe live video"
+  task :crawl_wangzhe do
+      Crawler.instance.crawl_wangzhe
+  end
+
+  desc "crawl DOTA2 live video"
+  task :crawl_DOTA2 do
+      Crawler.instance.crawl_DOTA2
+  end
+
 end
