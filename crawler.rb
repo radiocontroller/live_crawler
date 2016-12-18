@@ -7,16 +7,18 @@ require './app'
 class Crawler
     include Singleton
 
-    def execute
-        begin
-            logger = Logger.new("*.log")
-            redis = Redis.new
+    @@redis = Redis.new
+    @@logger = Logger.new("*.log")
+    @@agent = Mechanize.new
+    @@agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-            logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl")
-            now_f = Time.now.to_f
-            agent = Mechanize.new
-            agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
-            page = agent.get("https://www.douyu.com/directory/all")
+    def crawl_lol
+        begin
+            @@redis.del(App::LIVE_LOL_KEY)
+
+            # 斗鱼直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl douyu lol lives")
+            page = @@agent.get("https://www.douyu.com/directory/game/LOL")
             lives = page.search("ul#live-list-contentbox li")
             lives.each_with_index do |live, idx|
                 url = "https://www.douyu.com" + live.search("a").attr("href").text
@@ -27,12 +29,83 @@ class Crawler
                     url: url,
                     img_url: img_url,
                     name: name,
-                    num: num
+                    platform: "斗鱼"
                 }
-                redis.hset(App::LIVES_KEY, idx, JSON.generate(data))
+                @@redis.zadd(App::LIVE_LOL_KEY, convert_float(num), JSON.generate(data))
             end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl douyu lol lives")
+
+            # 熊猫直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl xiongmao lol lives")
+            page = @@agent.get("http://www.panda.tv/cate/lol")
+            lives = page.search("ul#sortdetail-container li")
+            lives.each_with_index do |live, idx|
+                url = "http://www.panda.tv" + live.search("a").attr("href").text
+                img_url = live.search("img").attr("data-original").text
+                name = live.search("span.video-nickname").text
+                num = live.search("span.video-number").text
+                data = {
+                    url: url,
+                    img_url: img_url,
+                    name: name,
+                    platform: "熊猫"
+                }
+                @@redis.zadd(App::LIVE_LOL_KEY, convert_float(num), JSON.generate(data))
+            end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl xiongmao lol lives")
+
+            # 虎牙直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl huya lol lives")
+            page = @@agent.get("http://www.huya.com/g/lol")
+            lives = page.search("ul#js-live-list li")
+            lives.each_with_index do |live, idx|
+                url = live.search("a").attr("href").text
+                img_url = live.search("img").attr("data-original").text
+                name = live.search("i.nick").text
+                num = live.search("i.js-num").text
+                data = {
+                    url: url,
+                    img_url: img_url,
+                    name: name,
+                    platform: "虎牙"
+                }
+                @@redis.zadd(App::LIVE_LOL_KEY, convert_float(num), JSON.generate(data))
+            end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl huya lol lives")
+
+            # 战旗直播
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl zhanqi lol lives")
+            page = @@agent.get("http://www.zhanqi.tv/games/lol")
+            lives = page.search("ul.js-room-list-ul li")
+            lives.each_with_index do |live, idx|
+                url = "http://www.zhanqi.tv" + live.search("a").attr("href").text
+                img_url = live.search("img").first.attributes["src"].value
+                name = live.search("span.anchor").text
+                num = live.search("span.dv").first.text
+                data = {
+                    url: url,
+                    img_url: img_url,
+                    name: name,
+                    platform: "战旗"
+                }
+                @@redis.zadd(App::LIVE_LOL_KEY, convert_float(num), JSON.generate(data))
+            end
+            @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} finish crawl zhanqi lol lives")
+
         rescue Exception => e
-            logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
+            @@logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
         end
     end
+
+    private
+
+        # 在线人数字符串转浮点型
+        def convert_float(num)
+            base = 1
+            if num.include?("万")
+                num.gsub!("万", "")
+                base = 10_000
+            end
+            num.to_f * base
+        end
 end

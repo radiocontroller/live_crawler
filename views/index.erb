@@ -1,78 +1,23 @@
-<style media="screen">
-    .wrap {
-        width: 1200px;
-        height: 800px;
-        margin: 0 auto;
-        padding: 0;
-    }
-
-    .live {
-        width: 100%;
-    }
-
-    .live ul {
-        margin: 0;
-        padding: 0;
-    }
-
-    .live ul li {
-        width: 280px;
-        height: 197px;
-        list-style-type: none;
-        float: left;
-        margin-right: 24px;
-        margin-bottom: 20px;
-    }
-
-    .live ul li:nth-child(4n) {
-        margin-right: 0;
-    }
-
-    .live a img {
-        width: 280px;
-        height: 157px;
-    }
-
-    .mes {
-        width: 280px;
-        height: 40px;
-    }
-
-    .mes div {
-        width: 135px;
-        height: 40px;
-        line-height: 40px;
-    }
-
-    .mes div:first-child {
-        padding-left: 5px;
-        text-align: left;
-        float: left;
-    }
-
-    .mes div:last-child {
-        padding-right: 5px;
-        text-align: right;
-        float: right;
-    }
-</style>
-
 <div class="wrap">
-    <h1>斗鱼在线全部</h1>
+    <h1>各平台LOL汇总(斗鱼, 虎牙, 熊猫, 战旗)</h1>
     <div class="live">
         <ul>
-            <% @lives.each do |idx, live_json| %>
+            <% @lives.each do |live_json, num| %>
                 <% live = JSON.parse(live_json) %>
                 <li>
                     <a href="<%= live['url'] %>" target="_blank">
                         <img src="<%= live['img_url'] %>" alt="" />
                     </a>
                     <div class="mes">
-                        <div><%= live["name"] %></div>
-                        <div><%= live["num"] %></div>
+                        <div class="nick"><%= live["name"] %></div>
+                        <div class="platform"><%= live["platform"] %></div>
+                        <div class="num"><%= convert_num(num) %></div>
                     </div>
                 </li>
             <% end %>
         </ul>
+    </div>
+    <div class="paginate">
+        <%= will_paginate @lives, class: 'apple_pagination', previous_label: '上一页', next_label: '下一页' %>
     </div>
 </div>

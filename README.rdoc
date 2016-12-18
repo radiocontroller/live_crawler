@@ -1,15 +1,11 @@
 == README
 
-此为部署分支(deploy), 代码与master分支有差异, 考虑到可以起多个进程, 定时任务改为linux的crontab, url: http://live.rcer.top
+website: http://live.rcer.top
 
 使用:
 * git clone git@github.com:radiocontroller/crawler_with_sinatra.git
 
 * cd crawler_with_sinatra
-
-* git checkout deploy
-
-* git pull
 
 * bundle install
 

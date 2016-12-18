@@ -2,9 +2,9 @@ require './crawler'
 
 namespace :crawler do
 
-  desc "crawl douyu video!!"
+  desc "crawl live video"
   task :crawl do
-      Crawler.instance.execute
+      Crawler.instance.crawl_lol
   end
 
 end
