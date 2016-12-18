@@ -3,9 +3,26 @@
     <head>
         <meta charset="utf-8">
         <link href="/index.css" rel="stylesheet" type="text/css" />
-        <title>直播汇合</title>
+        <title>各直播平台汇总(斗鱼, 虎牙, 熊猫, 战旗)</title>
     </head>
     <body>
-        <%= yield %>
+        <div class="wrap">
+            <div class="head">
+                <ul class="head-nav">
+                    <li class="<%= 'current' if '/' == request.path_info %>">
+                        <a href="/">英雄联盟</a>
+                    </li>
+                    <li class="<%= 'current' if '/hearthstone' == request.path_info %>">
+                        <a href="/hearthstone">炉石传说</a>
+                    </li>
+                </ul>
+            </div>
+
+            <%= yield %>
+
+            <div class="paginate">
+                <%= will_paginate @lives, class: 'apple_pagination', previous_label: '上一页', next_label: '下一页' %>
+            </div>
+        </div>
     </body>
 </html>

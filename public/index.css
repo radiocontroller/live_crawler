@@ -1,6 +1,5 @@
 .wrap {
     width: 1200px;
-    height: 800px;
     margin: 0 auto;
     padding: 0;
 }
@@ -12,6 +11,7 @@
 .live ul {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .live ul li {
@@ -58,6 +58,52 @@
     float: right;
 }
 
+/* 顶部导航栏 */
+
+.head {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.head-nav {
+    margin: 40px 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.head-nav li {
+    font-size: 20px;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    list-style-type: none;
+    margin-right: 20px;
+    float: left;
+}
+
+.head-nav > li:not(.current) > a:hover {
+    cursor: pointer;
+    color: #ff630e;
+}
+
+.head-nav > li > a {
+    font-family: monospace;
+    color: #444;
+    text-decoration: none;
+}
+
+.current {
+    background: #ff630e;
+    border-radius: 3px;
+}
+
+.head-nav .current a {
+    color: #fff;
+}
+
+/* 分页相关 */
+
 .paginate {
     margin-bottom: 65px;
 }
@@ -67,12 +113,15 @@
     padding: 1em;
     cursor: default;
 }
+
 .apple_pagination a, .apple_pagination span {
     padding: 0.2em 0.3em;
 }
+
 .apple_pagination .disabled {
     color: #aaaaaa;
 }
+
 .apple_pagination .current {
    font-style: normal;
    font-weight: bold;
@@ -86,10 +135,12 @@
    border-radius: 1em;
    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px;
 }
+
 .apple_pagination a {
    text-decoration: none;
    color: black;
 }
+
 .apple_pagination a:hover, .apple_pagination a:focus {
    text-decoration: underline;
 }

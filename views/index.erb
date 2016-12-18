@@ -1,23 +1,17 @@
-<div class="wrap">
-    <h1>各平台LOL汇总(斗鱼, 虎牙, 熊猫, 战旗)</h1>
-    <div class="live">
-        <ul>
-            <% @lives.each do |live_json, num| %>
-                <% live = JSON.parse(live_json) %>
-                <li>
-                    <a href="<%= live['url'] %>" target="_blank">
-                        <img src="<%= live['img_url'] %>" alt="" />
-                    </a>
-                    <div class="mes">
-                        <div class="nick"><%= live["name"] %></div>
-                        <div class="platform"><%= live["platform"] %></div>
-                        <div class="num"><%= convert_num(num) %></div>
-                    </div>
-                </li>
-            <% end %>
-        </ul>
-    </div>
-    <div class="paginate">
-        <%= will_paginate @lives, class: 'apple_pagination', previous_label: '上一页', next_label: '下一页' %>
-    </div>
+<div class="live">
+    <ul>
+        <% @lives.each do |live_json, num| %>
+            <% live = JSON.parse(live_json) %>
+            <li>
+                <a href="<%= live['url'] %>" target="_blank">
+                    <img src="<%= live['img_url'] %>" alt="" />
+                </a>
+                <div class="mes">
+                    <div class="nick"><%= live["name"] %></div>
+                    <div class="platform"><%= live["platform"] %></div>
+                    <div class="num"><%= convert_num(num) %></div>
+                </div>
+            </li>
+        <% end %>
+    </ul>
 </div>
