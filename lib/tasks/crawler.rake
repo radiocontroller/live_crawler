@@ -12,4 +12,14 @@ namespace :crawler do
       Crawler.instance.crawl_lushi
   end
 
+  desc "crawl cf live video"
+  task :crawl_cf do
+      Crawler.instance.crawl_cf
+  end
+
+  desc "crawl shouwang live video"
+  task :crawl_shouwang do
+      Crawler.instance.crawl_shouwang
+  end
+
 end
