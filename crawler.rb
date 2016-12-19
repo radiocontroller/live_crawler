@@ -354,7 +354,7 @@ class Crawler
 
     def crawl_wangzhe
         begin
-            @@redis.del(App::LIVE_SHOUWANG_KEY)
+            @@redis.del(App::LIVE_WANGZHE_KEY)
 
             # 斗鱼直播
             @@logger.info("#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} begin crawl douyu wangzhe lives")
