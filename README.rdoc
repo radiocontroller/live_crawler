@@ -13,12 +13,14 @@ website: http://live.rcer.top
 
 * crontab -e (修改定时器)
 
-\* \* \* \* \* sleep 15; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl --silent'
+\* \* \* \* \* sleep 15; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl_lol --silent'
 
-\* \* \* \* \* sleep 30; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl --silent'
+\* \* \* \* \* sleep 30; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl_lol --silent'
 
-\* \* \* \* \* sleep 45; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl --silent'
+\* \* \* \* \* sleep 45; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl_lol --silent'
 
-\* \* \* \* \* sleep 60; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl --silent'
+\* \* \* \* \* sleep 60; /bin/bash -l -c 'cd /你的路径/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl_lol --silent'
 
-* thin start -s3 -e production (起了三个进程, 默认端口: 3000, 3001, 3002)
+  其他游戏同样配置
+  
+* 选择server启动
