@@ -40,7 +40,7 @@ class Crawler
                 @@redis.zadd(App::LIVE_LOL_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
             end
         rescue Exception => e
-            exception_log("英雄联盟")
+            exception_log(e, "英雄联盟")
         end
     end
 
@@ -72,7 +72,7 @@ class Crawler
                 @@redis.zadd(App::LIVE_LUSHI_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
             end
         rescue Exception => e
-            exception_log("炉石传说")
+            exception_log(e, "炉石传说")
         end
     end
 
@@ -104,7 +104,7 @@ class Crawler
                 @@redis.zadd(App::LIVE_CF_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
             end
         rescue Exception => e
-            exception_log("穿越火线")
+            exception_log(e, "穿越火线")
         end
     end
 
@@ -136,7 +136,7 @@ class Crawler
                 @@redis.zadd(App::LIVE_SHOUWANG_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
             end
         rescue Exception => e
-            exception_log("守望先锋")
+            exception_log(e, "守望先锋")
         end
     end
 
@@ -168,7 +168,7 @@ class Crawler
                 @@redis.zadd(App::LIVE_WANGZHE_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
             end
         rescue Exception => e
-            exception_log("王者荣耀")
+            exception_log(e, "王者荣耀")
         end
     end
 
@@ -200,7 +200,7 @@ class Crawler
                 @@redis.zadd(App::LIVE_DOTA2_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
             end
         rescue Exception => e
-            exception_log("DOTA2")
+            exception_log(e, "DOTA2")
         end
     end
 
@@ -280,8 +280,8 @@ class Crawler
             end
         end
 
-        def exception_log(game)
-            @@logger.info("----- 抓取#{game}异常 -----")
+        def exception_log(e, game)
+            @@logger.info("----- #{Time.now.strftime('%Y-%m-%d %H:%M:%S.%L')} 抓取#{game}异常 -----")
             @@logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
         end
 end
