@@ -7,10 +7,12 @@ require './app'
 class Crawler
     include Singleton
 
-    @@redis = Redis.new
-    @@logger = Logger.new("*.log")
-    @@agent = Mechanize.new
-    @@agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    def initialize
+        @redis = Redis.new
+        @logger = Logger.new("*.log")
+        @agent = Mechanize.new
+        @agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    end
 
     def crawl_lol
         begin
@@ -34,11 +36,7 @@ class Crawler
 
             list.flatten!
 
-            # 更新数据
-            @@redis.del(App::LIVE_LOL_KEY)
-            list.each do |data|
-                @@redis.zadd(App::LIVE_LOL_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
-            end
+            update_lives(list, App::LIVE_LOL_KEY)
         rescue Exception => e
             exception_log(e, "英雄联盟")
         end
@@ -66,11 +64,7 @@ class Crawler
 
             list.flatten!
 
-            # 更新数据
-            @@redis.del(App::LIVE_LUSHI_KEY)
-            list.each do |data|
-                @@redis.zadd(App::LIVE_LUSHI_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
-            end
+            update_lives(list, App::LIVE_LUSHI_KEY)
         rescue Exception => e
             exception_log(e, "炉石传说")
         end
@@ -98,11 +92,7 @@ class Crawler
 
             list.flatten!
 
-            # 更新数据
-            @@redis.del(App::LIVE_CF_KEY)
-            list.each do |data|
-                @@redis.zadd(App::LIVE_CF_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
-            end
+            update_lives(list, App::LIVE_CF_KEY)
         rescue Exception => e
             exception_log(e, "穿越火线")
         end
@@ -130,11 +120,7 @@ class Crawler
 
             list.flatten!
 
-            # 更新数据
-            @@redis.del(App::LIVE_SHOUWANG_KEY)
-            list.each do |data|
-                @@redis.zadd(App::LIVE_SHOUWANG_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
-            end
+            update_lives(list, App::LIVE_SHOUWANG_KEY)
         rescue Exception => e
             exception_log(e, "守望先锋")
         end
@@ -162,11 +148,7 @@ class Crawler
 
             list.flatten!
 
-            # 更新数据
-            @@redis.del(App::LIVE_WANGZHE_KEY)
-            list.each do |data|
-                @@redis.zadd(App::LIVE_WANGZHE_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
-            end
+            update_lives(list, App::LIVE_WANGZHE_KEY)
         rescue Exception => e
             exception_log(e, "王者荣耀")
         end
@@ -194,11 +176,7 @@ class Crawler
 
             list.flatten!
 
-            # 更新数据
-            @@redis.del(App::LIVE_DOTA2_KEY)
-            list.each do |data|
-                @@redis.zadd(App::LIVE_DOTA2_KEY, convert_float(data["num"]), JSON.generate(data["detail"]))
-            end
+            update_lives(list, App::LIVE_DOTA2_KEY)
         rescue Exception => e
             exception_log(e, "DOTA2")
         end
@@ -217,7 +195,7 @@ class Crawler
         end
 
         def douyu_data(page_url)
-            page = @@agent.get(page_url)
+            page = @agent.get(page_url)
             lives = page.search("ul#live-list-contentbox li")
             lives.map do |live|
                 {
@@ -233,7 +211,7 @@ class Crawler
         end
 
         def xiongmao_data(page_url)
-            page = @@agent.get(page_url)
+            page = @agent.get(page_url)
             lives = page.search("ul#sortdetail-container li")
             lives.map do |live|
                 {
@@ -249,7 +227,7 @@ class Crawler
         end
 
         def huya_data(page_url)
-            page = @@agent.get(page_url)
+            page = @agent.get(page_url)
             lives = page.search("ul#js-live-list li")
             lives.map do |live|
                 {
@@ -265,7 +243,7 @@ class Crawler
         end
 
         def zhanqi_data(page_url)
-            page = @@agent.get(page_url)
+            page = @agent.get(page_url)
             lives = page.search("ul.js-room-list-ul li")
             lives.map do |live|
                 {
@@ -280,8 +258,15 @@ class Crawler
             end
         end
 
+        def update_lives(list, cache_key)
+            @redis.del cache_key
+            list.each do |data|
+                @redis.zadd(cache_key, convert_float(data["num"]), JSON.generate(data["detail"]))
+            end
+        end
+
         def exception_log(e, game)
-            @@logger.info("----- #{Time.now.strftime('%Y-%m-%d %H:%M:%S.%L')} 抓取#{game}异常 -----")
-            @@logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
+            @logger.info("----- #{Time.now.strftime('%Y-%m-%d %H:%M:%S.%L')} 抓取#{game}异常 -----")
+            @logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
         end
 end
