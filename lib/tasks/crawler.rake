@@ -32,4 +32,9 @@ namespace :crawler do
       Crawler.instance.crawl_dota2
   end
 
+  desc "crawl csgo live video"
+  task :crawl_csgo do
+      Crawler.instance.crawl_csgo
+  end
+
 end

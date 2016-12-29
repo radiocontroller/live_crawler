@@ -182,6 +182,34 @@ class Crawler
         end
     end
 
+    def crawl_csgo
+        begin
+            list = []
+
+            # 斗鱼直播
+            page_url = "https://www.douyu.com/directory/game/CSGO"
+            list << douyu_data(page_url)
+
+            # 熊猫直播
+            page_url = "http://www.panda.tv/cate/csgo"
+            list << xiongmao_data(page_url)
+
+            # 虎牙直播
+            page_url = "http://www.huya.com/g/862"
+            list << huya_data(page_url)
+
+            # 战旗直播
+            page_url = "http://www.zhanqi.tv/games/csgo"
+            list << zhanqi_data(page_url)
+
+            list.flatten!
+
+            update_lives(list, App::LIVE_CSGO_KEY)
+        rescue Exception => e
+            exception_log(e, "csgo")
+        end
+    end
+
     private
 
         # 在线人数字符串转浮点型
