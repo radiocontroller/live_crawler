@@ -16,7 +16,7 @@ class App < Sinatra::Base
     LIVE_DOTA2_KEY = "live:dota2:key"
     LIVE_CSGO_KEY = "live:csgo:key"
 
-    PAGE_SIZE = 80
+    PAGE_SIZE = 48
     $redis = Redis.new
 
     configure :production do

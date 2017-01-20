@@ -12,6 +12,7 @@ class Crawler
         @logger = Logger.new("*.log")
         @agent = Mechanize.new
         @agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
+	@agent.max_history = 0
     end
 
     def crawl_lol
@@ -40,6 +41,8 @@ class Crawler
         rescue Exception => e
             exception_log(e, "英雄联盟")
         end
+	@agent.history.clear
+	GC.start
     end
 
     def crawl_lushi
@@ -68,6 +71,8 @@ class Crawler
         rescue Exception => e
             exception_log(e, "炉石传说")
         end
+	@agent.history.clear
+	GC.start
     end
 
     def crawl_cf
@@ -96,6 +101,8 @@ class Crawler
         rescue Exception => e
             exception_log(e, "穿越火线")
         end
+	@agent.history.clear
+	GC.start
     end
 
     def crawl_shouwang
@@ -124,6 +131,8 @@ class Crawler
         rescue Exception => e
             exception_log(e, "守望先锋")
         end
+	@agent.history.clear
+	GC.start
     end
 
     def crawl_wangzhe
@@ -152,6 +161,8 @@ class Crawler
         rescue Exception => e
             exception_log(e, "王者荣耀")
         end
+	@agent.history.clear
+	GC.start
     end
 
     def crawl_dota2
@@ -180,6 +191,8 @@ class Crawler
         rescue Exception => e
             exception_log(e, "DOTA2")
         end
+	@agent.history.clear
+	GC.start
     end
 
     def crawl_csgo
@@ -208,6 +221,8 @@ class Crawler
         rescue Exception => e
             exception_log(e, "csgo")
         end
+	@agent.history.clear
+	GC.start
     end
 
     private
@@ -256,7 +271,7 @@ class Crawler
 
         def huya_data(page_url)
             page = @agent.get(page_url)
-            lives = page.search("ul#js-live-list li")
+	    lives = page.search("ul#js-live-list li")
             lives.map do |live|
                 {
                     "detail" => {

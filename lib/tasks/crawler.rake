@@ -1,40 +1,15 @@
 require './crawler'
 
-namespace :crawler do
+namespace :crawler do 
 
-  desc "crawl lol live video"
-  task :crawl_lol do
+  desc "crawl all live videos"
+  task :crawl_all do
       Crawler.instance.crawl_lol
-  end
-
-  desc "crawl lushi live video"
-  task :crawl_lushi do
       Crawler.instance.crawl_lushi
-  end
-
-  desc "crawl cf live video"
-  task :crawl_cf do
       Crawler.instance.crawl_cf
-  end
-
-  desc "crawl shouwang live video"
-  task :crawl_shouwang do
       Crawler.instance.crawl_shouwang
-  end
-
-  desc "crawl wangzhe live video"
-  task :crawl_wangzhe do
       Crawler.instance.crawl_wangzhe
-  end
-
-  desc "crawl dota2 live video"
-  task :crawl_dota2 do
       Crawler.instance.crawl_dota2
+      Crawler.instance.crawl_csgo 
   end
-
-  desc "crawl csgo live video"
-  task :crawl_csgo do
-      Crawler.instance.crawl_csgo
-  end
-
 end
