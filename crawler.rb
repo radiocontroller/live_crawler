@@ -12,7 +12,7 @@ class Crawler
         @logger = Logger.new("*.log")
         @agent = Mechanize.new
         @agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
-	@agent.max_history = 0
+	    @agent.max_history = 0
     end
 
     def crawl_lol
@@ -41,38 +41,38 @@ class Crawler
         rescue Exception => e
             exception_log(e, "英雄联盟")
         end
-	@agent.history.clear
-	GC.start
+	    @agent.history.clear
+	    GC.start
     end
 
-    def crawl_lushi
+    def crawl_zjgame
         begin
             list = []
 
             # 斗鱼直播
-            page_url = "https://www.douyu.com/directory/game/How"
+            page_url = "https://www.douyu.com/directory/game/TVgame"
             list << douyu_data(page_url)
 
             # 熊猫直播
-            page_url = "http://www.panda.tv/cate/hearthstone"
+            page_url = "http://www.panda.tv/cate/zhuji"
             list << xiongmao_data(page_url)
 
             # 虎牙直播
-            page_url = "http://www.huya.com/g/393"
+            page_url = "http://www.huya.com/g/ZJGAME"
             list << huya_data(page_url)
 
             # 战旗直播
-            page_url = "https://www.zhanqi.tv/chns/blizzard/how#spm=slider.left"
+            page_url = "https://www.zhanqi.tv/games/danji"
             list << zhanqi_data(page_url)
 
             list.flatten!
 
-            update_lives(list, App::LIVE_LUSHI_KEY)
+            update_lives(list, App::LIVE_ZJGAME_KEY)
         rescue Exception => e
-            exception_log(e, "炉石传说")
+            exception_log(e, "主机游戏")
         end
-	@agent.history.clear
-	GC.start
+    	@agent.history.clear
+    	GC.start
     end
 
     def crawl_cf
@@ -101,8 +101,38 @@ class Crawler
         rescue Exception => e
             exception_log(e, "穿越火线")
         end
-	@agent.history.clear
-	GC.start
+    	@agent.history.clear
+    	GC.start
+    end
+
+    def crawl_lushi
+        begin
+            list = []
+
+            # 斗鱼直播
+            page_url = "https://www.douyu.com/directory/game/How"
+            list << douyu_data(page_url)
+
+            # 熊猫直播
+            page_url = "http://www.panda.tv/cate/hearthstone"
+            list << xiongmao_data(page_url)
+
+            # 虎牙直播
+            page_url = "http://www.huya.com/g/393"
+            list << huya_data(page_url)
+
+            # 战旗直播
+            page_url = "https://www.zhanqi.tv/chns/blizzard/how#spm=slider.left"
+            list << zhanqi_data(page_url)
+
+            list.flatten!
+
+            update_lives(list, App::LIVE_LUSHI_KEY)
+        rescue Exception => e
+            exception_log(e, "炉石传说")
+        end
+    	@agent.history.clear
+    	GC.start
     end
 
     def crawl_shouwang
@@ -131,8 +161,8 @@ class Crawler
         rescue Exception => e
             exception_log(e, "守望先锋")
         end
-	@agent.history.clear
-	GC.start
+    	@agent.history.clear
+    	GC.start
     end
 
     def crawl_wangzhe
@@ -161,8 +191,8 @@ class Crawler
         rescue Exception => e
             exception_log(e, "王者荣耀")
         end
-	@agent.history.clear
-	GC.start
+    	@agent.history.clear
+    	GC.start
     end
 
     def crawl_dota2
@@ -191,8 +221,8 @@ class Crawler
         rescue Exception => e
             exception_log(e, "DOTA2")
         end
-	@agent.history.clear
-	GC.start
+    	@agent.history.clear
+    	GC.start
     end
 
     def crawl_csgo
@@ -221,8 +251,8 @@ class Crawler
         rescue Exception => e
             exception_log(e, "csgo")
         end
-	@agent.history.clear
-	GC.start
+    	@agent.history.clear
+    	GC.start
     end
 
     private

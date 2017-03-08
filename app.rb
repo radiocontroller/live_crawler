@@ -15,6 +15,7 @@ class App < Sinatra::Base
     LIVE_WANGZHE_KEY = "live:wangzhe:key"
     LIVE_DOTA2_KEY = "live:dota2:key"
     LIVE_CSGO_KEY = "live:csgo:key"
+    LIVE_ZJGAME_KEY = "live:zjgame:key"
 
     PAGE_SIZE = 48
     $redis = Redis.new
@@ -26,14 +27,20 @@ class App < Sinatra::Base
             erb :index, :layout => :'layout'
         end
 
-        get '/hearthstone' do
-            @lives = $redis.zrevrange(LIVE_LUSHI_KEY, 0, -1, :with_scores => true)
+        get '/zjgame' do
+            @lives = $redis.zrevrange(LIVE_ZJGAME_KEY, 0, -1, :with_scores => true)
                         .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
             erb :index, :layout => :'layout'
         end
 
         get '/cf' do
             @lives = $redis.zrevrange(LIVE_CF_KEY, 0, -1, :with_scores => true)
+                        .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
+            erb :index, :layout => :'layout'
+        end
+
+        get '/hearthstone' do
+            @lives = $redis.zrevrange(LIVE_LUSHI_KEY, 0, -1, :with_scores => true)
                         .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
             erb :index, :layout => :'layout'
         end
