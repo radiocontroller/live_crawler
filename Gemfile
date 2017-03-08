@@ -14,4 +14,5 @@ group :development do
     # 修改route不必重启server, rerun 'ruby app.rb'
     gem 'rerun', '~> 0.8.2'
     gem 'byebug'
+    gem 'thin'
 end

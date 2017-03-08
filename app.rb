@@ -20,7 +20,7 @@ class App < Sinatra::Base
     PAGE_SIZE = 48
     $redis = Redis.new
 
-    configure :production do
+    configure :development do
         get '/' do
             @lives = $redis.zrevrange(LIVE_LOL_KEY, 0, -1, :with_scores => true)
                         .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)

@@ -276,6 +276,7 @@ class Crawler
                         url: "https://www.douyu.com" + live.search("a").attr("href").text,
                         img_url: live.search("img").attr("data-original").text,
                         name: live.search("span.dy-name").text,
+                        title: live.search("h3.ellipsis").text.strip,
                         platform: "斗鱼"
                     },
                     "num" => live.search("span.dy-num").text
@@ -292,6 +293,7 @@ class Crawler
                         url: "http://www.panda.tv" + live.search("a").attr("href").text,
                         img_url: live.search("img").attr("data-original").text,
                         name: live.search("span.video-nickname").text,
+                        title: live.search("div.video-title").text.strip,
                         platform: "熊猫"
                     },
                     "num" => live.search("span.video-number").text
@@ -301,13 +303,14 @@ class Crawler
 
         def huya_data(page_url)
             page = @agent.get(page_url)
-	    lives = page.search("ul#js-live-list li")
+	        lives = page.search("ul#js-live-list li")
             lives.map do |live|
                 {
                     "detail" => {
                         url: live.search("a").attr("href").text,
                         img_url: live.search("img").attr("data-original").text,
                         name: live.search("i.nick").text,
+                        title: live.search("a.title").children[0].text.strip,
                         platform: "虎牙"
                     },
                     "num" => live.search("i.js-num").text
@@ -324,6 +327,7 @@ class Crawler
                         url: "http://www.zhanqi.tv" + live.search("a").attr("href").text,
                         img_url: live.search("img").first.attributes["src"].value,
                         name: live.search("span.anchor").text,
+                        title: live.search("span.name").text.strip,
                         platform: "战旗"
                     },
                     "num" => live.search("span.dv").first.text
