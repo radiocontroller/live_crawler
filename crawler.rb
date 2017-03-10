@@ -49,19 +49,15 @@ class Crawler
         begin
             list = []
 
-            # 斗鱼直播
             page_url = "https://www.douyu.com/directory/game/TVgame"
             list << douyu_data(page_url)
 
-            # 熊猫直播
             page_url = "http://www.panda.tv/cate/zhuji"
             list << xiongmao_data(page_url)
 
-            # 虎牙直播
             page_url = "http://www.huya.com/g/ZJGAME"
             list << huya_data(page_url)
 
-            # 战旗直播
             page_url = "https://www.zhanqi.tv/games/danji"
             list << zhanqi_data(page_url)
 
@@ -79,19 +75,15 @@ class Crawler
         begin
             list = []
 
-            # 斗鱼直播
             page_url = "https://www.douyu.com/directory/game/CF"
             list << douyu_data(page_url)
 
-            # 熊猫直播
             page_url = "http://www.panda.tv/cate/cf"
             list << xiongmao_data(page_url)
 
-            # 虎牙直播
             page_url = "http://www.huya.com/g/4"
             list << huya_data(page_url)
 
-            # 战旗直播
             page_url = "https://www.zhanqi.tv/games/fps#spm=slider.left"
             list << zhanqi_data(page_url)
 
@@ -109,19 +101,15 @@ class Crawler
         begin
             list = []
 
-            # 斗鱼直播
             page_url = "https://www.douyu.com/directory/game/How"
             list << douyu_data(page_url)
 
-            # 熊猫直播
             page_url = "http://www.panda.tv/cate/hearthstone"
             list << xiongmao_data(page_url)
 
-            # 虎牙直播
             page_url = "http://www.huya.com/g/393"
             list << huya_data(page_url)
 
-            # 战旗直播
             page_url = "https://www.zhanqi.tv/chns/blizzard/how#spm=slider.left"
             list << zhanqi_data(page_url)
 
@@ -139,19 +127,15 @@ class Crawler
         begin
             list = []
 
-            # 斗鱼直播
             page_url = "https://www.douyu.com/directory/game/Overwatch"
             list << douyu_data(page_url)
 
-            # 熊猫直播
             page_url = "http://www.panda.tv/cate/overwatch"
             list << xiongmao_data(page_url)
 
-            # 虎牙直播
             page_url = "http://www.huya.com/g/2174"
             list << huya_data(page_url)
 
-            # 战旗直播
             page_url = "https://www.zhanqi.tv/chns/blizzard/watch#spm=slider.left"
             list << zhanqi_data(page_url)
 
@@ -169,19 +153,15 @@ class Crawler
         begin
             list = []
 
-            # 斗鱼直播
             page_url = "https://www.douyu.com/directory/game/wzry"
             list << douyu_data(page_url)
 
-            # 熊猫直播
             page_url = "http://www.panda.tv/cate/kingglory"
             list << xiongmao_data(page_url)
 
-            # 虎牙直播
             page_url = "http://www.huya.com/g/2336"
             list << huya_data(page_url)
 
-            # 战旗直播
             page_url = "https://www.zhanqi.tv/games/wangzherongyao"
             list << zhanqi_data(page_url)
 
@@ -199,19 +179,15 @@ class Crawler
         begin
             list = []
 
-            # 斗鱼直播
             page_url = "https://www.douyu.com/directory/game/DOTA2"
             list << douyu_data(page_url)
 
-            # 熊猫直播
             page_url = "http://www.panda.tv/cate/dota2"
             list << xiongmao_data(page_url)
 
-            # 虎牙直播
             page_url = "http://www.huya.com/g/7"
             list << huya_data(page_url)
 
-            # 战旗直播
             page_url = "https://www.zhanqi.tv/games/dota2#spm=slider.left"
             list << zhanqi_data(page_url)
 
@@ -229,19 +205,15 @@ class Crawler
         begin
             list = []
 
-            # 斗鱼直播
             page_url = "https://www.douyu.com/directory/game/CSGO"
             list << douyu_data(page_url)
 
-            # 熊猫直播
             page_url = "http://www.panda.tv/cate/csgo"
             list << xiongmao_data(page_url)
 
-            # 虎牙直播
             page_url = "http://www.huya.com/g/862"
             list << huya_data(page_url)
 
-            # 战旗直播
             page_url = "http://www.zhanqi.tv/games/csgo"
             list << zhanqi_data(page_url)
 
