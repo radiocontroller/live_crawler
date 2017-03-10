@@ -17,7 +17,7 @@ class App < Sinatra::Base
     LIVE_CSGO_KEY = "live:csgo:key"
     LIVE_ZJGAME_KEY = "live:zjgame:key"
 
-    PAGE_SIZE = 48
+    PAGE_SIZE = 40
     $redis = Redis.new
 
     configure :production do
@@ -72,7 +72,7 @@ class App < Sinatra::Base
         helpers do
             def convert_num(num)
                 suffix = ""
-                if num > 10_000
+                if num >= 10_000
                     num = (num / 10_000).round(2)
                     suffix = "万"
                 else
