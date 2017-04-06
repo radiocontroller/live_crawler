@@ -7,6 +7,7 @@ namespace :crawler do
       Crawler.instance.crawl_lol
       Crawler.instance.crawl_zjgame
       Crawler.instance.crawl_cf
+      Crawler.instance.crawl_outdoor
       Crawler.instance.crawl_lushi
       Crawler.instance.crawl_shouwang
       Crawler.instance.crawl_wangzhe

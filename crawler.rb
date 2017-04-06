@@ -97,6 +97,29 @@ class Crawler
     	GC.start
     end
 
+    def crawl_outdoor
+        begin
+            list = []
+
+            page_url = "https://www.douyu.com/directory/game/outdoor"
+            list << douyu_data(page_url)
+
+            page_url = "http://www.panda.tv/cate/hwzb"
+            list << xiongmao_data(page_url)
+
+            page_url = "http://www.huya.com/g/hw"
+            list << huya_data(page_url)
+
+            list.flatten!
+
+            update_lives(list, App::LIVE_OUTDOOR_KEY)
+        rescue Exception => e
+            exception_log(e, "outdoor")
+        end
+    	@agent.history.clear
+    	GC.start
+    end
+
     def crawl_lushi
         begin
             list = []

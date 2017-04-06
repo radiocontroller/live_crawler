@@ -16,6 +16,7 @@ class App < Sinatra::Base
     LIVE_DOTA2_KEY = "live:dota2:key"
     LIVE_CSGO_KEY = "live:csgo:key"
     LIVE_ZJGAME_KEY = "live:zjgame:key"
+    LIVE_OUTDOOR_KEY = "live:outdoor:key"
 
     PAGE_SIZE = 40
     $redis = Redis.new
@@ -35,6 +36,12 @@ class App < Sinatra::Base
 
         get '/cf' do
             @lives = $redis.zrevrange(LIVE_CF_KEY, 0, -1, :with_scores => true)
+                        .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
+            erb :index, :layout => :'layout'
+        end
+
+        get '/outdoor' do
+            @lives = $redis.zrevrange(LIVE_OUTDOOR_KEY, 0, -1, :with_scores => true)
                         .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
             erb :index, :layout => :'layout'
         end
