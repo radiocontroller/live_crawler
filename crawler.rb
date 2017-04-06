@@ -250,6 +250,29 @@ class Crawler
     	GC.start
     end
 
+    def crawl_chess
+        begin
+            list = []
+
+            page_url = "https://www.douyu.com/directory/game/qipai"
+            list << douyu_data(page_url)
+
+            page_url = "http://www.panda.tv/cate/qipai"
+            list << xiongmao_data(page_url)
+
+            page_url = "http://www.huya.com/g/100036"
+            list << huya_data(page_url)
+
+            list.flatten!
+
+            update_lives(list, App::LIVE_CHESS_KEY)
+        rescue Exception => e
+            exception_log(e, "棋牌竞技")
+        end
+    	@agent.history.clear
+    	GC.start
+    end
+
     private
 
         # 在线人数字符串转浮点型
