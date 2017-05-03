@@ -11,7 +11,7 @@ namespace :crawler do
       Crawler.instance.crawl_lushi
       Crawler.instance.crawl_shouwang
       Crawler.instance.crawl_wangzhe
-      Crawler.instance.crawl_dota2
+      Crawler.instance.crawl_speed
       Crawler.instance.crawl_csgo
       Crawler.instance.crawl_chess
   end

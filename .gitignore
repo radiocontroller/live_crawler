@@ -1,6 +1,6 @@
 *.log
 .byebug_history
-Gemfile.lock
 /tmp/*
 /log/*
 /shared/*
+dump.rdb

@@ -198,27 +198,27 @@ class Crawler
     	GC.start
     end
 
-    def crawl_dota2
+    def crawl_speed
         begin
             list = []
 
-            page_url = "https://www.douyu.com/directory/game/DOTA2"
+            page_url = "https://www.douyu.com/directory/subCate/jingsu/396"
             list << douyu_data(page_url)
 
-            page_url = "http://www.panda.tv/cate/dota2"
+            page_url = "http://www.panda.tv/cate/qqfc"
             list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/7"
+            page_url = "http://www.huya.com/g/9"
             list << huya_data(page_url)
 
-            page_url = "https://www.zhanqi.tv/games/dota2#spm=slider.left"
-            list << zhanqi_data(page_url)
+            page_url = "http://longzhu.com/channels/speed?from=figame"
+            list << longzhu_data(page_url)
 
             list.flatten!
 
-            update_lives(list, App::LIVE_DOTA2_KEY)
+            update_lives(list, App::LIVE_SPEED_KEY)
         rescue Exception => e
-            exception_log(e, "DOTA2")
+            exception_log(e, "speed")
         end
     	@agent.history.clear
     	GC.start
@@ -349,6 +349,23 @@ class Crawler
                         platform: "战旗"
                     },
                     "num" => live.search("span.dv").first.text
+                }
+            end
+        end
+
+        def longzhu_data(page_url)
+            page = @agent.get(page_url)
+            lives = page.search("a.livecard")
+            lives.map do |live|
+                {
+                    "detail" => {
+                        url: live.attributes["href"].value,
+                        img_url: live.search("img")[0].attributes["src"].value,
+                        name: live.search("strong.livecard-modal-username")[0].children.text,
+                        title: live.search("h3.listcard-caption").children.text.strip,
+                        platform: "龙珠"
+                    },
+                    "num" => live.search("span.livecard-meta-item-text").children[0].text
                 }
             end
         end
