@@ -38,8 +38,8 @@ class Crawler
             list.flatten!
 
             update_lives(list, App::LIVE_LOL_KEY)
-        rescue Exception => e
-            exception_log(e, "英雄联盟")
+        rescue Timeout::Error
+            timeout_log("英雄联盟")
         end
 	    @agent.history.clear
 	    GC.start
@@ -64,8 +64,8 @@ class Crawler
             list.flatten!
 
             update_lives(list, App::LIVE_ZJGAME_KEY)
-        rescue Exception => e
-            exception_log(e, "主机游戏")
+        rescue Timeout::Error
+            timeout_log("主机游戏")
         end
     	@agent.history.clear
     	GC.start
@@ -90,8 +90,8 @@ class Crawler
             list.flatten!
 
             update_lives(list, App::LIVE_CF_KEY)
-        rescue Exception => e
-            exception_log(e, "穿越火线")
+        rescue Timeout::Error
+            timeout_log("穿越火线")
         end
     	@agent.history.clear
     	GC.start
@@ -113,8 +113,8 @@ class Crawler
             list.flatten!
 
             update_lives(list, App::LIVE_OUTDOOR_KEY)
-        rescue Exception => e
-            exception_log(e, "outdoor")
+        rescue Timeout::Error
+            timeout_log("户外直播")
         end
     	@agent.history.clear
     	GC.start
@@ -139,8 +139,8 @@ class Crawler
             list.flatten!
 
             update_lives(list, App::LIVE_LUSHI_KEY)
-        rescue Exception => e
-            exception_log(e, "炉石传说")
+        rescue Timeout::Error
+            timeout_log("炉石传说")
         end
     	@agent.history.clear
     	GC.start
@@ -165,8 +165,8 @@ class Crawler
             list.flatten!
 
             update_lives(list, App::LIVE_SHOUWANG_KEY)
-        rescue Exception => e
-            exception_log(e, "守望先锋")
+        rescue Timeout::Error
+            timeout_log("守望先锋")
         end
     	@agent.history.clear
     	GC.start
@@ -191,8 +191,8 @@ class Crawler
             list.flatten!
 
             update_lives(list, App::LIVE_WANGZHE_KEY)
-        rescue Exception => e
-            exception_log(e, "王者荣耀")
+        rescue Timeout::Error
+            timeout_log("王者荣耀")
         end
     	@agent.history.clear
     	GC.start
@@ -217,8 +217,8 @@ class Crawler
             list.flatten!
 
             update_lives(list, App::LIVE_SPEED_KEY)
-        rescue Exception => e
-            exception_log(e, "speed")
+        rescue Timeout::Error
+            timeout_log("QQ飞车")
         end
     	@agent.history.clear
     	GC.start
@@ -243,8 +243,8 @@ class Crawler
             list.flatten!
 
             update_lives(list, App::LIVE_CSGO_KEY)
-        rescue Exception => e
-            exception_log(e, "csgo")
+        rescue Timeout::Error
+            timeout_log("csgo")
         end
     	@agent.history.clear
     	GC.start
@@ -266,8 +266,8 @@ class Crawler
             list.flatten!
 
             update_lives(list, App::LIVE_CHESS_KEY)
-        rescue Exception => e
-            exception_log(e, "棋牌竞技")
+        rescue Timeout::Error
+            timeout_log("棋牌竞技")
         end
     	@agent.history.clear
     	GC.start
@@ -377,8 +377,7 @@ class Crawler
             end
         end
 
-        def exception_log(e, game)
-            @logger.info("----- #{Time.now.strftime('%Y-%m-%d %H:%M:%S.%L')} 抓取#{game}异常 -----")
-            @logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
+        def timeout_log(game)
+            @logger.info("----- #{Time.now.strftime('%Y-%m-%d %H:%M:%S.%L')} 抓取#{game}超时 -----")
         end
 end
