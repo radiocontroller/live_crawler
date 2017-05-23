@@ -205,8 +205,8 @@ class Crawler
             page_url = "https://www.douyu.com/directory/subCate/jingsu/396"
             list << douyu_data(page_url)
 
-            page_url = "http://www.panda.tv/cate/qqfc"
-            list << xiongmao_data(page_url)
+            page_url = "http://www.quanmin.tv/game/qqfeiche"
+            list << quanmin_data(page_url)
 
             page_url = "http://www.huya.com/g/9"
             list << huya_data(page_url)
@@ -366,6 +366,23 @@ class Crawler
                         platform: "龙珠"
                     },
                     "num" => live.search("span.livecard-meta-item-text").children[0].text
+                }
+            end
+        end
+
+        def quanmin_data
+            page = @agent.get(page_url)
+            lives = page.search("li.list_w-video")
+            lives.map do |live|
+                {
+                    "detail" => {
+                        url: "http://www.quanmin.tv" + live.search("a.common_w-card_href")[0].attributes["href"].value,
+                        img_url: live.search("img.common_w-card_cover")[0].attributes["src"].value,
+                        name: live.search("span.common_w-card_host-name")[0].children.text,
+                        title: live.search("p.common_w-card_title")[0].children.text.strip,
+                        platform: "全民"
+                    },
+                    "num" => live.search("span.common_w-card_views-num")[0].children.text
                 }
             end
         end
