@@ -370,7 +370,7 @@ class Crawler
             end
         end
 
-        def quanmin_data
+        def quanmin_data(page_url)
             page = @agent.get(page_url)
             lives = page.search("li.list_w-video")
             lives.map do |live|
