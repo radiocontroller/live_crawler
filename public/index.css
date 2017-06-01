@@ -26,7 +26,6 @@ body {
     float: left;
     margin-right: 24px;
     margin-bottom: 20px;
-    /*background-color: white;*/
 }
 
 .live ul li:nth-child(4n) {
@@ -91,7 +90,7 @@ body {
 }
 
 .head-nav {
-    margin: 40px 0;
+    margin: 16px 0;
     padding: 0;
     overflow: hidden;
 }
@@ -104,6 +103,7 @@ body {
     text-align: center;
     list-style-type: none;
     margin-right: 20px;
+    margin-top: 20px;
     float: left;
 }
 

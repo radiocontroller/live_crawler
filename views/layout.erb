@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
         <link href="/index.css" rel="stylesheet" type="text/css" />
-        <title>各直播平台汇总(斗鱼, 虎牙, 熊猫, 战旗)</title>
+        <title>直播平台汇总(斗鱼, 虎牙, 熊猫, 龙珠, 全民)</title>
     </head>
     <body>
         <div class="wrap">
@@ -39,6 +39,9 @@
                     </li>
                     <li class="<%= 'current' if '/chess' == request.path_info %>">
                         <a href="/chess">棋牌竞技</a>
+                    </li>
+                    <li class="<%= 'current' if '/movie' == request.path_info %>">
+                        <a href="/movie">电影相关</a>
                     </li>
                 </ul>
             </div>

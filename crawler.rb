@@ -31,15 +31,19 @@ class Crawler
             page_url = "http://www.huya.com/g/lol"
             list << huya_data(page_url)
 
-            # 战旗直播
-            page_url = "http://www.huya.com/g/lol"
-            list << zhanqi_data(page_url)
+            # 龙珠直播
+            page_url = "http://longzhu.com/channels/lol?from=rmgame"
+            list << longzhu_data(page_url)
+
+            # 全民tv
+            page_url = "http://www.quanmin.tv/game/lol"
+            list << quanmin_data(page_url)
 
             list.flatten!
 
             update_lives(list, App::LIVE_LOL_KEY)
-        rescue Timeout::Error
-            timeout_log("英雄联盟")
+        rescue Exception => e
+            exception_log(e, "英雄联盟")
         end
 	    @agent.history.clear
 	    GC.start
@@ -58,14 +62,17 @@ class Crawler
             page_url = "http://www.huya.com/g/ZJGAME"
             list << huya_data(page_url)
 
-            page_url = "https://www.zhanqi.tv/games/danji"
-            list << zhanqi_data(page_url)
+            page_url = "http://longzhu.com/channels/djzjjj?from=topbargame"
+            list << longzhu_data(page_url)
+
+            page_url = "http://www.quanmin.tv/game/tvgame"
+            list << quanmin_data(page_url)
 
             list.flatten!
 
             update_lives(list, App::LIVE_ZJGAME_KEY)
-        rescue Timeout::Error
-            timeout_log("主机游戏")
+        rescue Exception => e
+            exception_log(e, "主机游戏")
         end
     	@agent.history.clear
     	GC.start
@@ -84,14 +91,17 @@ class Crawler
             page_url = "http://www.huya.com/g/4"
             list << huya_data(page_url)
 
-            page_url = "https://www.zhanqi.tv/games/fps#spm=slider.left"
-            list << zhanqi_data(page_url)
+            page_url = "http://longzhu.com/channels/cf?from=topbargame"
+            list << longzhu_data(page_url)
+
+            page_url = "http://www.quanmin.tv/game/cfpc"
+            list << quanmin_data(page_url)
 
             list.flatten!
 
             update_lives(list, App::LIVE_CF_KEY)
-        rescue Timeout::Error
-            timeout_log("穿越火线")
+        rescue Exception => e
+            exception_log(e, "穿越火线")
         end
     	@agent.history.clear
     	GC.start
@@ -101,20 +111,26 @@ class Crawler
         begin
             list = []
 
-            page_url = "https://www.douyu.com/directory/game/outdoor"
+            page_url = "https://www.douyu.com/directory/game/HW"
             list << douyu_data(page_url)
 
             page_url = "http://www.panda.tv/cate/hwzb"
             list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/hw"
+            page_url = "http://www.huya.com/g/2836"
             list << huya_data(page_url)
+
+            page_url = "http://longzhu.com/channels/huwai"
+            list << longzhu_data(page_url)
+
+            page_url = "http://www.quanmin.tv/game/huwai"
+            list << quanmin_data(page_url)
 
             list.flatten!
 
             update_lives(list, App::LIVE_OUTDOOR_KEY)
-        rescue Timeout::Error
-            timeout_log("户外直播")
+        rescue Exception => e
+            exception_log(e, "户外直播")
         end
     	@agent.history.clear
     	GC.start
@@ -133,14 +149,17 @@ class Crawler
             page_url = "http://www.huya.com/g/393"
             list << huya_data(page_url)
 
-            page_url = "https://www.zhanqi.tv/chns/blizzard/how#spm=slider.left"
-            list << zhanqi_data(page_url)
+            page_url = "http://longzhu.com/channels/hs"
+            list << longzhu_data(page_url)
+
+            page_url = "http://www.quanmin.tv/game/hearthstone"
+            list << quanmin_data(page_url)
 
             list.flatten!
 
             update_lives(list, App::LIVE_LUSHI_KEY)
-        rescue Timeout::Error
-            timeout_log("炉石传说")
+        rescue Exception => e
+            exception_log(e, "炉石传说")
         end
     	@agent.history.clear
     	GC.start
@@ -159,14 +178,17 @@ class Crawler
             page_url = "http://www.huya.com/g/2174"
             list << huya_data(page_url)
 
-            page_url = "https://www.zhanqi.tv/chns/blizzard/watch#spm=slider.left"
-            list << zhanqi_data(page_url)
+            page_url = "http://longzhu.com/channels/ow"
+            list << longzhu_data(page_url)
+
+            page_url = "http://www.quanmin.tv/game/overwatch"
+            list << quanmin_data(page_url)
 
             list.flatten!
 
             update_lives(list, App::LIVE_SHOUWANG_KEY)
-        rescue Timeout::Error
-            timeout_log("守望先锋")
+        rescue Exception => e
+            exception_log(e, "守望先锋")
         end
     	@agent.history.clear
     	GC.start
@@ -185,14 +207,17 @@ class Crawler
             page_url = "http://www.huya.com/g/2336"
             list << huya_data(page_url)
 
-            page_url = "https://www.zhanqi.tv/games/wangzherongyao"
-            list << zhanqi_data(page_url)
+            page_url = "http://longzhu.com/channels/wzry"
+            list << longzhu_data(page_url)
+
+            page_url = "http://www.quanmin.tv/game/wangzhe"
+            list << quanmin_data(page_url)
 
             list.flatten!
 
             update_lives(list, App::LIVE_WANGZHE_KEY)
-        rescue Timeout::Error
-            timeout_log("王者荣耀")
+        rescue Exception => e
+            exception_log(e, "王者荣耀")
         end
     	@agent.history.clear
     	GC.start
@@ -217,8 +242,8 @@ class Crawler
             list.flatten!
 
             update_lives(list, App::LIVE_SPEED_KEY)
-        rescue Timeout::Error
-            timeout_log("QQ飞车")
+        rescue Exception => e
+            exception_log(e, "QQ飞车")
         end
     	@agent.history.clear
     	GC.start
@@ -237,14 +262,17 @@ class Crawler
             page_url = "http://www.huya.com/g/862"
             list << huya_data(page_url)
 
-            page_url = "http://www.zhanqi.tv/games/csgo"
-            list << zhanqi_data(page_url)
+            page_url = "http://longzhu.com/channels/csgo"
+            list << longzhu_data(page_url)
+
+            page_url = "http://www.quanmin.tv/game/csgo"
+            list << quanmin_data(page_url)
 
             list.flatten!
 
             update_lives(list, App::LIVE_CSGO_KEY)
-        rescue Timeout::Error
-            timeout_log("csgo")
+        rescue Exception => e
+            exception_log(e, "csgo")
         end
     	@agent.history.clear
     	GC.start
@@ -263,11 +291,43 @@ class Crawler
             page_url = "http://www.huya.com/g/100036"
             list << huya_data(page_url)
 
+            page_url = "http://www.quanmin.tv/game/qipai"
+            list << quanmin_data(page_url)
+
             list.flatten!
 
             update_lives(list, App::LIVE_CHESS_KEY)
-        rescue Timeout::Error
-            timeout_log("棋牌竞技")
+        rescue Exception => e
+            exception_log(e, "棋牌竞技")
+        end
+    	@agent.history.clear
+    	GC.start
+    end
+
+    def crawl_movie
+        begin
+            list = []
+
+            page_url = "https://www.douyu.com/directory/game/stdp"
+            list << douyu_data(page_url)
+
+            page_url = "http://www.panda.tv/cate/cartoon"
+            list << xiongmao_data(page_url)
+
+            page_url = "http://www.huya.com/g/seeTogether"
+            list << huya_data(page_url)
+
+            page_url = "http://www.quanmin.tv/game/dzh"
+            list << quanmin_data(page_url)
+
+            page_url = "http://longzhu.com/channels/movie"
+            list << longzhu_data(page_url)
+
+            list.flatten!
+
+            update_lives(list, App::LIVE_MOVIE_KEY)
+        rescue Exception => e
+            exception_log(e, "电影相关")
         end
     	@agent.history.clear
     	GC.start
@@ -394,7 +454,8 @@ class Crawler
             end
         end
 
-        def timeout_log(game)
-            @logger.info("----- #{Time.now.strftime('%Y-%m-%d %H:%M:%S.%L')} 抓取#{game}超时 -----")
+        def exception_log(e, game)
+            @logger.info("----- #{Time.now.strftime('%Y-%m-%d %H:%M:%S.%L')} 抓取#{game}异常 -----")		 +            @logger.info("----- #{Time.now.strftime('%Y-%m-%d %H:%M:%S.%L')} 抓取#{game}超时 -----")
+            @logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
         end
 end
