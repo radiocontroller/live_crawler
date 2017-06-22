@@ -455,7 +455,7 @@ class Crawler
         end
 
         def exception_log(e, game)
-            @logger.info("----- #{Time.now.strftime('%Y-%m-%d %H:%M:%S.%L')} 抓取#{game}异常 -----")		 +            @logger.info("----- #{Time.now.strftime('%Y-%m-%d %H:%M:%S.%L')} 抓取#{game}超时 -----")
+            @logger.info("----- #{Time.now.strftime('%Y-%m-%d %H:%M:%S.%L')} 抓取#{game}异常 -----")
             @logger.info("Backtrace:\n\t#{e.backtrace.join("\n\t")}")
         end
 end
