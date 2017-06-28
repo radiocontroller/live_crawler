@@ -436,7 +436,7 @@ class Crawler
             lives.map do |live|
                 {
                     "detail" => {
-                        url: "http://www.quanmin.tv" + live.search("a.common_w-card_href")[0].attributes["href"].value,
+                        url: "http://www.quanmin.tv" + live.search("a.common_w-card_href")[0].attributes["href"].value.split(".tv").last,
                         img_url: live.search("img.common_w-card_cover")[0].attributes["src"].value,
                         name: live.search("span.common_w-card_host-name")[0].children.text,
                         title: live.search("p.common_w-card_title")[0].children.text.strip,
