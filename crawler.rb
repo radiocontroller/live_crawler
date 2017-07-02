@@ -338,7 +338,10 @@ class Crawler
         # 在线人数字符串转浮点型
         def convert_float(num)
             base = 1
-            if num.include?("万")
+            if num.include?("万人")
+                num.gsub!("万人", "")
+                base = 10_000
+            elsif num.include?("万")
                 num.gsub!("万", "")
                 base = 10_000
             end
@@ -371,7 +374,7 @@ class Crawler
                         url: "http://www.panda.tv" + live.search("a").attr("href").text,
                         img_url: live.search("img").attr("data-original").text,
                         name: live.search("span.video-nickname").text,
-                        title: live.search("div.video-title").text.strip,
+                        title: live.search("span.video-title").text.strip,
                         platform: "熊猫"
                     },
                     "num" => live.search("span.video-number").text

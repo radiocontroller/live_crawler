@@ -4,6 +4,7 @@ require 'redis'
 require 'json'
 require 'will_paginate'
 require 'will_paginate/array'
+require 'mechanize'
 
 class App < Sinatra::Base
     include WillPaginate::Sinatra::Helpers
