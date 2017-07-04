@@ -5,7 +5,6 @@ gem 'json'
 gem 'redis'
 gem 'mechanize'
 gem 'activesupport'
-gem 'whenever', :require => false
 gem 'rake'
 gem 'will_paginate', '~> 3.1.0'
 gem 'unicorn'

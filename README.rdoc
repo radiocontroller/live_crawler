@@ -11,12 +11,6 @@ usage:
 
 * crontab -e
 
-\* \* \* \* \* sleep 5; /bin/bash -l -c 'cd /your_project_path/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl_all --silent'
+\* \* \* \* \* /bin/bash -l -c 'cd /your_project_path/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl_all --silent'
 
-\* \* \* \* \* sleep 20; /bin/bash -l -c 'cd /your_project_path/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl_all --silent'
-
-\* \* \* \* \* sleep 35; /bin/bash -l -c 'cd /your_project_path/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl_all --silent'
-
-\* \* \* \* \* sleep 50; /bin/bash -l -c 'cd /your_project_path/crawler_with_sinatra && RAILS_ENV=production bundle exec rake crawler:crawl_all --silent'
-
-* choose server to start
+* select server to start
