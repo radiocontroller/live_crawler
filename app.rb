@@ -102,6 +102,36 @@ class App < Sinatra::Base
                 end
                 "#{num}#{suffix}"
             end
+
+            def get_favicon_by(platform)
+              case platform
+              when "斗鱼"
+                "http://www.douyu.com/favicon.ico"
+              when "虎牙"
+                "http://www.huya.com/favicon.ico"
+              when "熊猫"
+                "https://www.panda.tv/favicon.ico"
+              when "龙珠"
+                "http://www.longzhu.com/favicon.ico"
+              when "全民"
+                "https://www.quanmin.tv/favicon.ico"
+              end
+            end
+
+            def get_class_by(platform)
+              case platform
+              when "斗鱼"
+                "douyu"
+              when "虎牙"
+                "huya"
+              when "熊猫"
+                "xiongmao"
+              when "龙珠"
+                "longzhu"
+              when "全民"
+                "quanmin"
+              end
+            end
         end
     end
 end

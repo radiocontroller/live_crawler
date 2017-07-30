@@ -3,14 +3,21 @@
         <% @lives.each do |live_json, num| %>
             <% live = JSON.parse(live_json) %>
             <li>
+                <span class="plat <%= get_class_by(live['platform']) %>">
+                  <img src="<%= get_favicon_by(live['platform']) %>" alt="<%= live['platform'] %>">
+                  <span><%= live['platform'] %></span>
+                </span>
                 <a href="<%= live['url'] %>" target="_blank">
-                    <img src="<%= live['img_url'] %>" alt="" />
+                  <img src="<%= live['img_url'] %>" alt="" />
+                  <div class="overlay"></div>
+                  <div class="video-play"></div>
                 </a>
                 <div class="mes">
-                    <h3 class="title" title="<%= live['title'] %>"><%= live['title'] %></h3>
-                    <div class="nick"><%= live["name"] %></div>
-                    <div class="platform"><%= live["platform"] %></div>
-                    <div class="num"><%= convert_num(num) %></div>
+                    <h1 class="title" title="<%= live['title'] %>"><%= live['title'] %></h1>
+                    <div class="sub-mes">
+                      <span class="nick"><%= live['name'] %></span>
+                      <span class="num"><%= convert_num(num) %></span>
+                    </div>
                 </div>
             </li>
         <% end %>
