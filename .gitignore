@@ -1,4 +1,5 @@
 *.log
+crawler.pid
 .byebug_history
 /tmp/*
 /log/*
