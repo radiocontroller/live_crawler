@@ -1,5 +1,6 @@
 body {
     font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    background-color: #f6f6f6;
 }
 
 .wrap {
@@ -103,20 +104,26 @@ body {
   -webkit-transition: all ease-out 250ms;
 }
 
+.mes {
+  background-color: #fff;
+  border-bottom: 3px solid #ececec;
+}
+
 .mes .title {
     margin: 0;
     font-size: 14px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    margin-top: 7px;
+    margin-top: 2px;
+    padding-top: 2px;
     width: 210px;
     color: #31311A;
 }
 
 .sub-mes {
   font-size: 13px;
-  margin-top: 5px;
+  margin-top: 3px;
   color: #3D3D3D;
   position: relative;
 }
