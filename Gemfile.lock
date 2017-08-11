@@ -7,7 +7,6 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     byebug (9.0.6)
-    chronic (0.10.2)
     concurrent-ruby (1.0.5)
     daemons (1.2.4)
     domain_name (0.5.20170223)
@@ -74,8 +73,6 @@ GEM
       kgio (~> 2.6)
       raindrops (~> 0.7)
     webrobots (0.1.2)
-    whenever (0.9.7)
-      chronic (>= 0.6.3)
     will_paginate (3.1.5)
 
 PLATFORMS
@@ -92,8 +89,7 @@ DEPENDENCIES
   sinatra
   thin
   unicorn
-  whenever
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.12.2
+   1.15.1

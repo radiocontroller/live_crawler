@@ -4,7 +4,7 @@ body {
 }
 
 .wrap {
-    width: 1200px;
+    width: 1496px;
     margin: 0 auto;
     padding: 0;
 }
@@ -28,7 +28,7 @@ body {
     position: relative;
 }
 
-.live ul li:nth-child(4n) {
+.live ul li:nth-child(5n) {
     margin-right: 0;
 }
 
@@ -242,4 +242,18 @@ body {
 
 .apple_pagination a:hover, .apple_pagination a:focus {
    text-decoration: underline;
+}
+
+@media screen and (max-width: 1495px) {
+  .wrap {
+      width: 1200px;
+  }
+
+  .live ul li:nth-child(5n) {
+      margin-right: 24px;
+  }
+
+  .live ul li:nth-child(4n) {
+      margin-right: 0;
+  }
 }
