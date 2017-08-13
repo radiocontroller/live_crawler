@@ -8,7 +8,7 @@
                   <span><%= live['platform'] %></span>
                 </span>
                 <a href="<%= live['url'] %>" target="_blank">
-                  <img src="<%= live['img_url'] %>" alt="" />
+                  <img src="<%= live['img_url'] %>"  class="lazy" data-original="<%= live['img_url'] %>"  />
                   <div class="overlay"></div>
                   <div class="video-play"></div>
                 </a>
@@ -23,3 +23,8 @@
         <% end %>
     </ul>
 </div>
+<script type="text/javascript">
+  $(function() {
+    $("img.lazy").lazyload({effect: "fadeIn"});
+  });
+</script>
