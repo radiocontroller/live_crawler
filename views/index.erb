@@ -15,16 +15,15 @@
                 <div class="mes">
                     <h1 class="title" title="<%= live['title'] %>"><%= live['title'] %></h1>
                     <div class="sub-mes">
-                      <span class="nick"><%= live['name'] %></span>
-                      <span class="num"><%= convert_num(num) %></span>
+                      <span class="nick">
+                        <img src="/account.png"><%= live['name'] %>
+                      </span>
+                      <span class="num">
+                        <img src="/eye.png" alt=""><%= convert_num(num) %>
+                      </span>
                     </div>
                 </div>
             </li>
         <% end %>
     </ul>
 </div>
-<script type="text/javascript">
-  $(function() {
-    $("img.lazy").lazyload({effect: "fadeIn"});
-  });
-</script>

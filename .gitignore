@@ -5,3 +5,4 @@ crawler.pid
 /log/*
 /shared/*
 dump.rdb
+.DS_Store
