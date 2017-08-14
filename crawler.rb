@@ -333,6 +333,35 @@ class Crawler
     	GC.start
     end
 
+    def crawl_show
+        begin
+            list = []
+
+            page_url = "https://www.douyu.com/directory/game/xingyu"
+            list << douyu_data(page_url)
+
+            page_url = "https://www.panda.tv/cate/yzdr"
+            list << xiongmao_data(page_url)
+
+            page_url = "http://www.huya.com/g/xingxiu"
+            list << huya_data(page_url)
+
+            page_url = "https://www.quanmin.tv/game/showing"
+            list << quanmin_data(page_url)
+
+            page_url = "http://longzhu.com/channels/lzxx"
+            list << longzhu_data(page_url)
+
+            list.flatten!
+
+            update_lives(list, App::LIVE_SHOW_KEY)
+        rescue Exception => e
+            exception_log(e, "星娱星秀")
+        end
+        @agent.history.clear
+        GC.start
+    end
+
     private
 
         # 在线人数字符串转浮点型

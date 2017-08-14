@@ -20,6 +20,7 @@ class App < Sinatra::Base
     LIVE_OUTDOOR_KEY = "live:outdoor:key"
     LIVE_CHESS_KEY = "live:chess:key"
     LIVE_MOVIE_KEY = "live:movie:key"
+    LIVE_SHOW_KEY = "live:show:key"
 
     PAGE_SIZE = 40
     $redis = Redis.new
@@ -39,6 +40,12 @@ class App < Sinatra::Base
 
         get '/cf' do
             @lives = $redis.zrevrange(LIVE_CF_KEY, 0, -1, :with_scores => true)
+                        .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
+            erb :index, :layout => :'layout'
+        end
+
+        get '/show' do
+            @lives = $redis.zrevrange(LIVE_SHOW_KEY, 0, -1, :with_scores => true)
                         .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
             erb :index, :layout => :'layout'
         end

@@ -19,5 +19,6 @@ namespace :crawler do
       Crawler.instance.crawl_csgo
       Crawler.instance.crawl_chess
       Crawler.instance.crawl_movie
+      Crawler.instance.crawl_show
   end
 end
