@@ -396,13 +396,13 @@ class Crawler
 
         def xiongmao_data(page_url)
             page = @agent.get(page_url)
-            lives = page.search("ul#sortdetail-container li")
+            lives = page.search("ul#sortdetail-container li.video-no-tag")
             lives.map do |live|
                 {
                     "detail" => {
                         url: "http://www.panda.tv" + live.search("a").attr("href").text,
                         img_url: live.search("img").attr("data-original").text,
-                        name: live.search("span.video-nickname").text,
+                        name: live.search("span.video-nickname").text.strip,
                         title: live.search("span.video-title").text.strip,
                         platform: "熊猫"
                     },
