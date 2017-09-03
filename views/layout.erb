@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="keyword" content="直播,直播平台,直播汇总,直播平台汇总,直播平台整合">
-        <meta name="description" content="多个直播平台整合,汇总">
+        <meta name="description" content="多个直播平台整合,多个直播平台汇总">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
         <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
         <link href="/index.css" rel="stylesheet" type="text/css">
@@ -20,6 +20,9 @@
                     </li>
                     <li class="<%= 'current' if '/zjgame' == request.path_info %>">
                         <a href="/zjgame">主机游戏</a>
+                    </li>
+                    <li class="<%= 'current' if '/zjgame' == request.path_info %>">
+                        <a href="/jdqs">绝地求生</a>
                     </li>
                     <li class="<%= 'current' if '/cf' == request.path_info %>">
                         <a href="/cf">穿越火线</a>

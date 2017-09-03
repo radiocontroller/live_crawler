@@ -78,6 +78,35 @@ class Crawler
     	GC.start
     end
 
+    def crawl_jdqs
+        begin
+            list = []
+
+            page_url = "https://www.douyu.com/directory/game/jdqs"
+            list << douyu_data(page_url)
+
+            page_url = "https://www.panda.tv/cate/pubg"
+            list << xiongmao_data(page_url)
+
+            page_url = "http://www.huya.com/g/2793"
+            list << huya_data(page_url)
+
+            page_url = "http://longzhu.com/channels/jdqs?from=figame"
+            list << longzhu_data(page_url)
+
+            page_url = "https://www.quanmin.tv/game/juediqiusheng"
+            list << quanmin_data(page_url)
+
+            list.flatten!
+
+            update_lives(list, App::LIVE_JDQS_KEY)
+        rescue Exception => e
+            exception_log(e, "绝地求生")
+        end
+    	@agent.history.clear
+    	GC.start
+    end
+
     def crawl_cf
         begin
             list = []
