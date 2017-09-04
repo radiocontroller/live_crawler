@@ -107,23 +107,21 @@ body {
 .mes {
   background-color: #fff;
   border-bottom: 3px solid #ececec;
+  margin-top: 2px;
 }
 
 .mes .title {
-    margin: 0;
-    font-size: 14px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    margin-top: 2px;
-    padding-top: 2px;
-    width: 210px;
-    color: #31311A;
+  width: 210px;
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-top: 2px;
+  color: #31311A;
 }
 
 .sub-mes {
   font-size: 13px;
-  margin-top: 3px;
   color: #3D3D3D;
   position: relative;
 }
@@ -135,7 +133,6 @@ body {
   -webkit-transform: translateY(1px);
   -moz-transform: translateY(1px);
   -ms-transform: translateY(1px);
-  margin-right: 2px;
 }
 
 .sub-mes .num img {

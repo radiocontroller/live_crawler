@@ -13,10 +13,12 @@
                   <div class="video-play"></div>
                 </a>
                 <div class="mes">
-                    <h1 class="title" title="<%= live['title'] %>"><%= live['title'] %></h1>
+                    <% title = live['title'].scan(/[\u4e00-\u9fa5|\s|\A-\z]*/).join("") %>
+                    <div class="title" title="<%= title %>"><%= title %></div>
                     <div class="sub-mes">
                       <span class="nick">
-                        <img src="/account.svg"><%= live['name'] %>
+                        <img src="/account.svg">
+                        <%= live['name'].scan(/[\u4e00-\u9fa5|\s|\A-\z]*/).join("") %>
                       </span>
                       <span class="num">
                         <img src="/eye.svg" alt=""><%= convert_num(num) %>
