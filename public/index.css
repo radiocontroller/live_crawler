@@ -124,6 +124,7 @@ body {
   font-size: 13px;
   color: #3D3D3D;
   position: relative;
+  height: 18px !important;
 }
 
 .sub-mes .nick img {
@@ -217,10 +218,6 @@ body {
 
 /* 分页相关 */
 
-.paginate {
-    margin-bottom: 65px;
-}
-
 .apple_pagination {
     text-align: center;
     padding: 1em;
@@ -270,4 +267,14 @@ body {
   .live ul li:nth-child(4n) {
       margin-right: 0;
   }
+}
+
+.info-card {
+  margin-bottom: 30px;
+}
+
+.info-card a {
+  display: inline-block;
+  margin-right: 12px;
+  vertical-align: bottom;
 }
