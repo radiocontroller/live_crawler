@@ -38,6 +38,7 @@ GEM
     minitest (5.10.1)
     net-http-digest_auth (1.4.1)
     net-http-persistent (2.9.4)
+    newrelic_rpm (3.18.1.330)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     ntlm-http (0.1.1)
@@ -83,6 +84,7 @@ DEPENDENCIES
   byebug
   json
   mechanize
+  newrelic_rpm
   rake
   redis
   rerun (~> 0.8.2)

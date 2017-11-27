@@ -8,6 +8,7 @@ gem 'activesupport'
 gem 'rake'
 gem 'will_paginate', '~> 3.1.0'
 gem 'unicorn'
+gem 'newrelic_rpm'
 
 group :development do
     # 修改route不必重启server, rerun 'ruby app.rb'

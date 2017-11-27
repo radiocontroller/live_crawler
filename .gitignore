@@ -6,3 +6,4 @@ crawler.pid
 /shared/*
 dump.rdb
 .DS_Store
+config/newrelic.yml
