@@ -369,7 +369,13 @@ class Crawler
             page_url = "https://www.douyu.com/directory/game/xingyu"
             list << douyu_data(page_url)
 
+            page_url = "https://www.douyu.com/directory/game/music"  # 音乐
+            list << douyu_data(page_url)
+
             page_url = "https://www.panda.tv/cate/yzdr"
+            list << xiongmao_data(page_url)
+
+            page_url = "https://www.panda.tv/cate/music"  # 音乐
             list << xiongmao_data(page_url)
 
             page_url = "http://www.huya.com/g/xingxiu"
