@@ -378,8 +378,8 @@ class Crawler
             page_url = "https://www.quanmin.tv/game/showing"
             list << quanmin_data(page_url)
 
-            page_url = "http://longzhu.com/channels/lzxx"
-            list << longzhu_data(page_url)
+            # page_url = "http://longzhu.com/channels/lzxx"
+            # list << longzhu_data(page_url)
 
             list.flatten!
 
