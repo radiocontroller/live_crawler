@@ -486,7 +486,7 @@ class Crawler
             lives.map do |live|
                 {
                     "detail" => {
-                        url: live.attributes["href"].value.gsub("//", ""),
+                        url: "http:" + live.attributes["href"].value,
                         img_url: live.search("img")[0].attributes["src"].value,
                         name: live.search("strong.livecard-modal-username")[0].children.text,
                         title: live.search("h3.listcard-caption").children.text.strip,
