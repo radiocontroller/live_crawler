@@ -27,6 +27,23 @@ class App < Sinatra::Base
     $redis = Redis.new
 
     configure :production do
+        get '/wx' do
+          begin
+            token = "rcer"
+            arr = [token, params["timestamp"], params["nonce"]]
+            sign = Digest::SHA1.hexdigest(arr.sort.join)
+            if sign == params["signature"]
+              params["echostr"]
+            else
+              'error !'
+            end
+          rescue ArgumentError
+            'argument error !'
+          rescue Exception
+            'exception !'
+          end
+        end
+
         get '/' do
             @lives = $redis.zrevrange(LIVE_LOL_KEY, 0, -1, :with_scores => true)
                         .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
