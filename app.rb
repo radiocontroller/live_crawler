@@ -81,7 +81,7 @@ class App < Sinatra::Base
           { page_size: PAGE_SIZE, total_size: $redis.zrevrange(key, 0, -1, :with_scores => true).size }.to_json
         end
 
-        post '/' do
+        get '/' do
             @lives = $redis.zrevrange(LIVE_LOL_KEY, 0, -1, :with_scores => true)
                         .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
             erb :index, :layout => :'layout'
