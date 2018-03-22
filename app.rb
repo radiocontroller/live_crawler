@@ -26,6 +26,11 @@ class App < Sinatra::Base
     PAGE_SIZE = 40
     $redis = Redis.new
 
+    before do
+      response.headers["Access-Control-Allow-Origin"] = "*"
+      response.headers["Access-Control-Allow-Methods"] = "GET"
+    end
+
     configure :production do
         get '/wx' do
           begin
@@ -44,7 +49,39 @@ class App < Sinatra::Base
           end
         end
 
-        get '/' do
+        get '/api/headers' do
+          return nil if params[:zsh].nil?
+          [
+            { title: '英雄联盟', path: 'lol' },
+            { title: '主机游戏', path: 'zjgame' },
+            { title: '绝地求生', path: 'jdqs' },
+            { title: '穿越火线', path: 'cf' },
+            { title: '娱乐音乐', path: 'show' },
+            { title: '户外直播', path: 'outdoor' },
+            { title: '炉石传说', path: 'lushi' },
+            { title: '守望先锋', path: 'shouwang' },
+            { title: '王者荣耀', path: 'wangzhe' },
+            { title: 'QQ飞车', path: 'speed' },
+            { title: 'CS:GO', path: 'csgo' },
+            { title: '棋牌竞技', path: 'chess' },
+            { title: '电影相关', path: 'movie' }
+          ].to_json
+        end
+
+        get '/api/lives' do
+          return nil if params[:zsh].nil?
+          key = App.const_get "LIVE_#{params[:key].upcase}_KEY"
+          $redis.zrevrange(key, 0, -1, :with_scores => true)
+                 .paginate(page: params[:page] || 1, per_page: PAGE_SIZE).to_json
+        end
+
+        get '/api/lives/size' do
+          return nil if params[:zsh].nil?
+          key = App.const_get "LIVE_#{params[:key].upcase}_KEY"
+          { page_size: PAGE_SIZE, total_size: $redis.zrevrange(key, 0, -1, :with_scores => true).size }.to_json
+        end
+
+        post '/' do
             @lives = $redis.zrevrange(LIVE_LOL_KEY, 0, -1, :with_scores => true)
                         .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
             erb :index, :layout => :'layout'
