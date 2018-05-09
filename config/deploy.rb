@@ -25,6 +25,8 @@ set :rvm_custom_path, '/home/ubuntu/.rvm'
 
 namespace :deploy do
 
+  after :restart, :'puma:restart'    #添加此项重启puma
+  after :publishing, :restart
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
@@ -33,5 +35,4 @@ namespace :deploy do
       # end
     end
   end
-  after :finishing, :'puma:restart'
 end

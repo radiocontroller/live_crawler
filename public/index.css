@@ -6,7 +6,7 @@ body {
 .wrap {
     width: 1496px;
     margin: 0 auto;
-    padding: 0;
+    padding-bottom: 30px;
 }
 
 .live {
@@ -180,7 +180,7 @@ body {
 }
 
 .head-nav {
-    margin: 16px 0;
+    margin: 0;
     padding: 0;
     overflow: hidden;
 }
@@ -271,7 +271,7 @@ body {
 }
 
 .info-card {
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .info-card a {

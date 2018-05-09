@@ -12,6 +12,12 @@
     </head>
     <body>
         <div class="wrap">
+            <div class="info-card">
+              <!-- <a href="https://github.com/radiocontroller" target="_blank" title="github"><img src="https://github.com/favicon.ico" alt="" width="20"></a> -->
+              <!-- <a href="http://blog.rcer.top" target="_blank" title="博客"><img src="http://blog.rcer.top/favicon.ico" alt="" width="20"></a>
+              <a href="https://rc.rcer.top" target="_blank" title="航模网"><img src="https://rc.rcer.top/favicon.ico" alt="" width="20" style="border-radius: 1px;"></a> -->
+              <span style="font-size: 14px; color: 555;">联系邮箱: 302643159@qq.com</span>
+            </div>
             <div class="head">
                 <ul class="head-nav">
                     <li class="<%= 'current' if '/' == request.path_info %>">
@@ -62,12 +68,6 @@
                 <%= will_paginate @lives, class: 'apple_pagination', previous_label: '上一页', next_label: '下一页' %>
             </div>
 
-            <div class="info-card">
-              <a href="https://github.com/radiocontroller" target="_blank" title="github"><img src="https://github.com/favicon.ico" alt="" width="20"></a>
-              <!-- <a href="http://blog.rcer.top" target="_blank" title="博客"><img src="http://blog.rcer.top/favicon.ico" alt="" width="20"></a>
-              <a href="https://rc.rcer.top" target="_blank" title="航模网"><img src="https://rc.rcer.top/favicon.ico" alt="" width="20" style="border-radius: 1px;"></a> -->
-              <span style="font-size: 14px; color: 555;">联系邮箱: 302643159@qq.com</span>
-            </div>
         </div>
     </body>
 </html>

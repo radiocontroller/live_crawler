@@ -6,8 +6,8 @@ require "capistrano/deploy"
 require "capistrano/setup"
 require 'capistrano/rvm'
 require 'capistrano/bundler'
-require 'capistrano/rails/assets'
-require 'capistrano/rails/migrations'
+# require 'capistrano/rails/assets'
+# require 'capistrano/rails/migrations'
 require 'capistrano/rails/console'
 require 'capistrano/puma'
 #
