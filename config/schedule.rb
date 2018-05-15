@@ -20,6 +20,10 @@
 # Learn more: http://github.com/javan/whenever
 
 # crontab定时器最小单位为分钟，若改秒进入配置文件中改
+env :PATH, ENV['PATH']
+env :GEM_PATH, "/usr/local/bundle/"
+set :output, '/crawler_with_sinatra/log/cron.log'
+set :bundle_command, "/usr/local/bundle/bin/bundle exec"
 every 1.minute do
-  rake "crawler:crawl"
+  rake "crawler:crawl_all"
 end

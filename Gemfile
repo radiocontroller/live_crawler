@@ -7,7 +7,7 @@ gem 'mechanize'
 gem 'activesupport'
 gem 'rake'
 gem 'will_paginate', '~> 3.1.0'
-gem 'newrelic_rpm'
+gem 'whenever'
 gem 'puma'
 
 group :production do

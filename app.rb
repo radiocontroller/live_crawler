@@ -24,7 +24,7 @@ class App < Sinatra::Base
     LIVE_JDQS_KEY = "live:jdqs:key"
 
     PAGE_SIZE = 40
-    $redis = Redis.new
+    $redis = Redis.new(host: 'redis', port: '6379')
 
     before do
       response.headers["Access-Control-Allow-Origin"] = "*"

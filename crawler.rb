@@ -8,7 +8,7 @@ class Crawler
     include Singleton
 
     def initialize
-        @redis = Redis.new
+        @redis = Redis.new(host: 'redis', port: '6379')
         @logger = Logger.new("*.log")
         @agent = Mechanize.new
         @agent.verify_mode = OpenSSL::SSL::VERIFY_NONE

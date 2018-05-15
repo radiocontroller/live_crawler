@@ -32,6 +32,7 @@ GEM
       capistrano (~> 3.5)
       capistrano-bundler
       puma (~> 3.4)
+    chronic (0.10.2)
     concurrent-ruby (1.0.5)
     daemons (1.2.4)
     domain_name (0.5.20170223)
@@ -65,7 +66,6 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
-    newrelic_rpm (3.18.1.330)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     ntlm-http (0.1.1)
@@ -103,6 +103,8 @@ GEM
       unf_ext
     unf_ext (0.0.7.2)
     webrobots (0.1.2)
+    whenever (0.10.0)
+      chronic (>= 0.6.3)
     will_paginate (3.1.5)
 
 PLATFORMS
@@ -119,13 +121,13 @@ DEPENDENCIES
   capistrano3-puma
   json
   mechanize
-  newrelic_rpm
   puma
   rake
   redis
   rerun (~> 0.8.2)
   sinatra
   thin
+  whenever
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
