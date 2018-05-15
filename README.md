@@ -6,7 +6,7 @@ docker分支是docker版本, master分支是非docker版本
 2. 拉取代码
 
   ```
-  git clone git@github.com:radiocontroller/crawler_with_sinatra.git
+  git clone https://github.com/radiocontroller/crawler_with_sinatra.git
   ```
 
 3. 进行构建镜像并运行镜像
