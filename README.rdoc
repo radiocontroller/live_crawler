@@ -1,5 +1,7 @@
 == README
 
+Assume you have installed redis and started redis with port 6379
+
 usage:
 * git clone git@github.com:radiocontroller/crawler_with_sinatra.git
 
