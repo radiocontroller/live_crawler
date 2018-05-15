@@ -1,3 +1,5 @@
+docker分支是docker版本, master分支是非docker版本
+
 ### 使用说明:
 1. 拉取代码
 

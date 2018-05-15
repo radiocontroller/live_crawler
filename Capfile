@@ -10,6 +10,7 @@ require 'capistrano/bundler'
 # require 'capistrano/rails/migrations'
 require 'capistrano/rails/console'
 require 'capistrano/puma'
+require "whenever/capistrano"
 #
 # require 'capistrano/rvm'
 # require 'capistrano/rbenv'
