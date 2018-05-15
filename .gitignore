@@ -6,5 +6,3 @@ crawler.pid
 /shared/*
 dump.rdb
 .DS_Store
-docker-compose.yml
-Dockerfile

@@ -1,0 +1,33 @@
+version: "3"
+services:
+
+#  db:
+#    image: postgres
+#    ports:
+#      - "5432"
+  nginx:
+    image: nginx
+    container_name: crawler-nginx
+    ports: 
+      - 82:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+    links:
+      - web
+  
+  web:
+    build: .
+    container_name: crawler-web
+    command: bundle exec thin start -p 3000 -e production
+    volumes:
+      - .:/crawler_with_sinatra
+    expose:
+      - "3000"
+    links:
+      - redis
+
+  redis:
+    image: redis
+    container_name: crawler-redis
+    volumes:
+      - /data:/data
