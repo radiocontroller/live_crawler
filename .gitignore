@@ -1,8 +1,7 @@
-*.log
+./*.log
 crawler.pid
 .byebug_history
 /tmp/*
-/log/*
 /shared/*
 dump.rdb
 .DS_Store
