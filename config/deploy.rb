@@ -22,7 +22,7 @@ set :rvm_type, :system
 set :rvm_ruby_string, '2.2.3'
 set :rvm_roles, [:app, :web, :db]
 set :rvm_custom_path, '/home/ubuntu/.rvm'
-set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+set :whenever_identifier, ->{ "#{fetch(:application)}}" }
 
 namespace :deploy do
 
