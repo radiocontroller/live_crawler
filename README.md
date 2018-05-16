@@ -5,15 +5,16 @@ docker分支是docker版本, master分支是非docker版本
 
   ```
   git clone https://github.com/radiocontroller/crawler_with_sinatra.git
+  cd crawler_with_sinatra
   ```
 
-2. 安装gem
+2. 安装依赖
 
   ```
   bundle install
   ```
 
-3. 配置爬虫定时任务, 文件是config/schedule.rb, 现在每分钟执行
+3. 配置爬虫定时任务, 文件是config/schedule.rb, 现在每两分钟执行一次
 
   ```
   whenever --update-crontab
