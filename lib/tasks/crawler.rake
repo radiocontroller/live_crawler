@@ -4,8 +4,9 @@ namespace :crawler do
 
   desc "crawl all live videos"
   task :crawl_all do
-      pid_file = File.expand_path('../../crawler.pid', File.dirname(__FILE__))
-      File.new(pid_file, "w") { f.puts Process.pid } if !File.exists? pid_file
+      #pid_file = File.expand_path('../../crawler.pid', File.dirname(__FILE__))
+      #puts pid_file
+      #File.open(pid_file, "w") { f.puts Process.pid } if !File.exists? pid_file
 
       Crawler.instance.crawl_lol
       Crawler.instance.crawl_zjgame
@@ -21,6 +22,6 @@ namespace :crawler do
       Crawler.instance.crawl_movie
       Crawler.instance.crawl_show
 
-      File.delete(pid_file) if File.exists? pid_file
+      #File.delete(pid_file) if File.exists? pid_file
   end
 end
