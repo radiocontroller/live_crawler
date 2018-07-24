@@ -140,17 +140,17 @@ class Crawler
         begin
             list = []
 
-            page_url = "https://www.douyu.com/directory/game/HW"
+            page_url = "https://www.douyu.com/g_HW"
             list << douyu_data(page_url)
 
             page_url = "http://www.panda.tv/cate/hwzb"
             list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/2836"
+            page_url = "http://www.huya.com/g/huwai"
             list << huya_data(page_url)
 
-            page_url = "http://longzhu.com/channels/huwai"
-            list << longzhu_data(page_url)
+            # page_url = "http://longzhu.com/channels/huwai"
+            # list << longzhu_data(page_url)
 
             page_url = "http://www.quanmin.tv/game/huwai"
             list << quanmin_data(page_url)
