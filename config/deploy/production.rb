@@ -1,10 +1,10 @@
-server '123.206.177.20', user: 'ubuntu', roles: %w{web app db}, primary: true, port: 22
+server '115.159.145.214', user: 'ubuntu', roles: %w{web app db}, primary: true, port: 22
 set :stage, :production
 set :branch, :master
 set :rails_env, :production
-set :deploy_to, '/home/ubuntu/www/crawler_with_sinatra'
+set :deploy_to, '/home/ubuntu/app/crawler_with_sinatra'
 set :rvm_type, :system
-set :rvm_ruby_version , '2.2.3'
+set :rvm_ruby_version , '2.3.1'
 
 # PUMA
 set :puma_state, "#{shared_path}/tmp/pids/puma.state"

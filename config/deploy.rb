@@ -3,7 +3,7 @@ lock '3.5.0'
 
 set :application, 'crawler_with_sinatra'
 set :repo_url, 'git@github.com:radiocontroller/crawler_with_sinatra.git'
-set :deploy_to, '/home/ubuntu/www/crawler_with_sinatra'
+set :deploy_to, '/home/ubuntu/app/crawler_with_sinatra'
 set :deploy_user, 'ubuntu'
 set :scm, :git
 set :format, :pretty
