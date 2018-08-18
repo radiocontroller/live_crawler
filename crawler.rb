@@ -12,389 +12,311 @@ class Crawler
         @logger = Logger.new("*.log")
         @agent = Mechanize.new
         @agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
-	    @agent.max_history = 0
+	      @agent.max_history = 0
     end
 
     def crawl_lol
-        begin
-            list = []
+      list = []
 
-            # 斗鱼直播
-            page_url = "https://www.douyu.com/directory/game/LOL"
-            list << douyu_data(page_url)
+      # 斗鱼直播
+      page_url = "https://www.douyu.com/directory/game/LOL"
+      list << douyu_data(page_url)
 
-            # 熊猫直播
-            page_url = "http://www.panda.tv/cate/lol"
-            list << xiongmao_data(page_url)
+      # 熊猫直播
+      page_url = "http://www.panda.tv/cate/lol"
+      list << xiongmao_data(page_url)
 
-            # 虎牙直播
-            page_url = "http://www.huya.com/g/lol"
-            list << huya_data(page_url)
+      # 虎牙直播
+      page_url = "http://www.huya.com/g/lol"
+      list << huya_data(page_url)
 
-            # 龙珠直播
-            page_url = "http://longzhu.com/channels/lol?from=rmgame"
-            list << longzhu_data(page_url)
+      # 龙珠直播
+      page_url = "http://longzhu.com/channels/lol?from=rmgame"
+      list << longzhu_data(page_url)
 
-            # 全民tv
-            page_url = "http://www.quanmin.tv/game/lol"
-            list << quanmin_data(page_url)
+      # 全民tv
+      page_url = "http://www.quanmin.tv/game/lol"
+      list << quanmin_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_LOL_KEY)
-        rescue Exception => e
-            exception_log(e, "英雄联盟")
-        end
-	    @agent.history.clear
-	    GC.start
+      update_lives(list, App::LIVE_LOL_KEY)
     end
 
     def crawl_zjgame
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/directory/game/TVgame"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/game/TVgame"
+      list << douyu_data(page_url)
 
-            page_url = "http://www.panda.tv/cate/zhuji"
-            list << xiongmao_data(page_url)
+      page_url = "http://www.panda.tv/cate/zhuji"
+      list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/ZJGAME"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/ZJGAME"
+      list << huya_data(page_url)
 
-            page_url = "http://longzhu.com/channels/djzjjj?from=topbargame"
-            list << longzhu_data(page_url)
+      page_url = "http://longzhu.com/channels/djzjjj?from=topbargame"
+      list << longzhu_data(page_url)
 
-            page_url = "http://www.quanmin.tv/game/tvgame"
-            list << quanmin_data(page_url)
+      page_url = "http://www.quanmin.tv/game/tvgame"
+      list << quanmin_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_ZJGAME_KEY)
-        rescue Exception => e
-            exception_log(e, "主机游戏")
-        end
-    	@agent.history.clear
-    	GC.start
+      update_lives(list, App::LIVE_ZJGAME_KEY)
     end
 
     def crawl_jdqs
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/directory/game/jdqs"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/game/jdqs"
+      list << douyu_data(page_url)
 
-            page_url = "https://www.panda.tv/cate/pubg"
-            list << xiongmao_data(page_url)
+      page_url = "https://www.panda.tv/cate/pubg"
+      list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/2793"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/2793"
+      list << huya_data(page_url)
 
-            page_url = "http://longzhu.com/channels/jdqs?from=figame"
-            list << longzhu_data(page_url)
+      page_url = "http://longzhu.com/channels/jdqs?from=figame"
+      list << longzhu_data(page_url)
 
-            page_url = "https://www.quanmin.tv/game/juediqiusheng"
-            list << quanmin_data(page_url)
+      page_url = "https://www.quanmin.tv/game/juediqiusheng"
+      list << quanmin_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_JDQS_KEY)
-        rescue Exception => e
-            exception_log(e, "绝地求生")
-        end
-    	@agent.history.clear
-    	GC.start
+      update_lives(list, App::LIVE_JDQS_KEY)
     end
 
     def crawl_cf
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/directory/game/CF"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/game/CF"
+      list << douyu_data(page_url)
 
-            page_url = "http://www.panda.tv/cate/cf"
-            list << xiongmao_data(page_url)
+      page_url = "http://www.panda.tv/cate/cf"
+      list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/4"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/4"
+      list << huya_data(page_url)
 
-            page_url = "http://longzhu.com/channels/cf?from=topbargame"
-            list << longzhu_data(page_url)
+      page_url = "http://longzhu.com/channels/cf?from=topbargame"
+      list << longzhu_data(page_url)
 
-            page_url = "http://www.quanmin.tv/game/cfpc"
-            list << quanmin_data(page_url)
+      page_url = "http://www.quanmin.tv/game/cfpc"
+      list << quanmin_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_CF_KEY)
-        rescue Exception => e
-            exception_log(e, "穿越火线")
-        end
-    	@agent.history.clear
-    	GC.start
+      update_lives(list, App::LIVE_CF_KEY)
     end
 
     def crawl_outdoor
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/g_HW"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/g_HW"
+      list << douyu_data(page_url)
 
-            page_url = "http://www.panda.tv/cate/hwzb"
-            list << xiongmao_data(page_url)
+      page_url = "http://www.panda.tv/cate/hwzb"
+      list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/huwai"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/huwai"
+      list << huya_data(page_url)
 
-            # page_url = "http://longzhu.com/channels/huwai"
-            # list << longzhu_data(page_url)
+      # page_url = "http://longzhu.com/channels/huwai"
+      # list << longzhu_data(page_url)
 
-            page_url = "http://www.quanmin.tv/game/huwai"
-            list << quanmin_data(page_url)
+      page_url = "http://www.quanmin.tv/game/huwai"
+      list << quanmin_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_OUTDOOR_KEY)
-        rescue Exception => e
-            exception_log(e, "户外直播")
-        end
-    	@agent.history.clear
-    	GC.start
+      update_lives(list, App::LIVE_OUTDOOR_KEY)
     end
 
     def crawl_lushi
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/directory/game/How"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/game/How"
+      list << douyu_data(page_url)
 
-            page_url = "http://www.panda.tv/cate/hearthstone"
-            list << xiongmao_data(page_url)
+      page_url = "http://www.panda.tv/cate/hearthstone"
+      list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/393"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/393"
+      list << huya_data(page_url)
 
-            page_url = "http://longzhu.com/channels/hs"
-            list << longzhu_data(page_url)
+      page_url = "http://longzhu.com/channels/hs"
+      list << longzhu_data(page_url)
 
-            page_url = "http://www.quanmin.tv/game/hearthstone"
-            list << quanmin_data(page_url)
+      page_url = "http://www.quanmin.tv/game/hearthstone"
+      list << quanmin_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_LUSHI_KEY)
-        rescue Exception => e
-            exception_log(e, "炉石传说")
-        end
-    	@agent.history.clear
-    	GC.start
+      update_lives(list, App::LIVE_LUSHI_KEY)
     end
 
     def crawl_shouwang
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/directory/game/Overwatch"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/game/Overwatch"
+      list << douyu_data(page_url)
 
-            page_url = "http://www.panda.tv/cate/overwatch"
-            list << xiongmao_data(page_url)
+      page_url = "http://www.panda.tv/cate/overwatch"
+      list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/2174"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/2174"
+      list << huya_data(page_url)
 
-            page_url = "http://longzhu.com/channels/ow"
-            list << longzhu_data(page_url)
+      page_url = "http://longzhu.com/channels/ow"
+      list << longzhu_data(page_url)
 
-            page_url = "http://www.quanmin.tv/game/overwatch"
-            list << quanmin_data(page_url)
+      page_url = "http://www.quanmin.tv/game/overwatch"
+      list << quanmin_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_SHOUWANG_KEY)
-        rescue Exception => e
-            exception_log(e, "守望先锋")
-        end
-    	@agent.history.clear
-    	GC.start
+      update_lives(list, App::LIVE_SHOUWANG_KEY)
     end
 
     def crawl_wangzhe
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/directory/game/wzry"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/game/wzry"
+      list << douyu_data(page_url)
 
-            page_url = "http://www.panda.tv/cate/kingglory"
-            list << xiongmao_data(page_url)
+      page_url = "http://www.panda.tv/cate/kingglory"
+      list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/2336"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/2336"
+      list << huya_data(page_url)
 
-            page_url = "http://longzhu.com/channels/wzry"
-            list << longzhu_data(page_url)
+      page_url = "http://longzhu.com/channels/wzry"
+      list << longzhu_data(page_url)
 
-            page_url = "http://www.quanmin.tv/game/wangzhe"
-            list << quanmin_data(page_url)
+      page_url = "http://www.quanmin.tv/game/wangzhe"
+      list << quanmin_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_WANGZHE_KEY)
-        rescue Exception => e
-            exception_log(e, "王者荣耀")
-        end
-    	@agent.history.clear
-    	GC.start
+      update_lives(list, App::LIVE_WANGZHE_KEY)
     end
 
     def crawl_speed
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/directory/subCate/jingsu/396"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/subCate/jingsu/396"
+      list << douyu_data(page_url)
 
-            page_url = "http://www.quanmin.tv/game/qqfeiche"
-            list << quanmin_data(page_url)
+      page_url = "http://www.quanmin.tv/game/qqfeiche"
+      list << quanmin_data(page_url)
 
-            page_url = "http://www.huya.com/g/9"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/9"
+      list << huya_data(page_url)
 
-            page_url = "http://longzhu.com/channels/speed?from=figame"
-            list << longzhu_data(page_url)
+      page_url = "http://longzhu.com/channels/speed?from=figame"
+      list << longzhu_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_SPEED_KEY)
-        rescue Exception => e
-            exception_log(e, "QQ飞车")
-        end
-    	@agent.history.clear
-    	GC.start
+      update_lives(list, App::LIVE_SPEED_KEY)
     end
 
     def crawl_csgo
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/directory/game/CSGO"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/game/CSGO"
+      list << douyu_data(page_url)
 
-            page_url = "http://www.panda.tv/cate/csgo"
-            list << xiongmao_data(page_url)
+      page_url = "http://www.panda.tv/cate/csgo"
+      list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/862"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/862"
+      list << huya_data(page_url)
 
-            page_url = "http://longzhu.com/channels/csgo"
-            list << longzhu_data(page_url)
+      page_url = "http://longzhu.com/channels/csgo"
+      list << longzhu_data(page_url)
 
-            page_url = "http://www.quanmin.tv/game/csgo"
-            list << quanmin_data(page_url)
+      page_url = "http://www.quanmin.tv/game/csgo"
+      list << quanmin_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_CSGO_KEY)
-        rescue Exception => e
-            exception_log(e, "csgo")
-        end
-    	@agent.history.clear
-    	GC.start
+      update_lives(list, App::LIVE_CSGO_KEY)
     end
 
     def crawl_chess
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/directory/game/qipai"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/game/qipai"
+      list << douyu_data(page_url)
 
-            page_url = "http://www.panda.tv/cate/qipai"
-            list << xiongmao_data(page_url)
+      page_url = "http://www.panda.tv/cate/qipai"
+      list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/100036"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/100036"
+      list << huya_data(page_url)
 
-            page_url = "http://www.quanmin.tv/game/qipai"
-            list << quanmin_data(page_url)
+      page_url = "http://www.quanmin.tv/game/qipai"
+      list << quanmin_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_CHESS_KEY)
-        rescue Exception => e
-            exception_log(e, "棋牌竞技")
-        end
-    	@agent.history.clear
-    	GC.start
+      update_lives(list, App::LIVE_CHESS_KEY)
     end
 
     def crawl_movie
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/directory/game/stdp"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/game/stdp"
+      list << douyu_data(page_url)
 
-            page_url = "http://www.panda.tv/cate/cartoon"
-            list << xiongmao_data(page_url)
+      page_url = "http://www.panda.tv/cate/cartoon"
+      list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/seeTogether"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/seeTogether"
+      list << huya_data(page_url)
 
-            page_url = "http://www.quanmin.tv/game/dzh"
-            list << quanmin_data(page_url)
+      page_url = "http://www.quanmin.tv/game/dzh"
+      list << quanmin_data(page_url)
 
-            page_url = "http://longzhu.com/channels/movie"
-            list << longzhu_data(page_url)
+      page_url = "http://longzhu.com/channels/movie"
+      list << longzhu_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_MOVIE_KEY)
-        rescue Exception => e
-            exception_log(e, "电影相关")
-        end
-    	@agent.history.clear
-    	GC.start
+      update_lives(list, App::LIVE_MOVIE_KEY)
     end
 
     def crawl_show
-        begin
-            list = []
+      list = []
 
-            page_url = "https://www.douyu.com/directory/game/xingyu"
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/game/xingyu"
+      list << douyu_data(page_url)
 
-            page_url = "https://www.douyu.com/directory/game/music"  # 音乐
-            list << douyu_data(page_url)
+      page_url = "https://www.douyu.com/directory/game/music"  # 音乐
+      list << douyu_data(page_url)
 
-            page_url = "https://www.panda.tv/cate/yzdr"
-            list << xiongmao_data(page_url)
+      page_url = "https://www.panda.tv/cate/yzdr"
+      list << xiongmao_data(page_url)
 
-            page_url = "https://www.panda.tv/cate/music"  # 音乐
-            list << xiongmao_data(page_url)
+      page_url = "https://www.panda.tv/cate/music"  # 音乐
+      list << xiongmao_data(page_url)
 
-            page_url = "http://www.huya.com/g/xingxiu"
-            list << huya_data(page_url)
+      page_url = "http://www.huya.com/g/xingxiu"
+      list << huya_data(page_url)
 
-            # page_url = "https://www.quanmin.tv/game/showing"
-            # list << quanmin_data(page_url)
+      # page_url = "https://www.quanmin.tv/game/showing"
+      # list << quanmin_data(page_url)
 
-            # page_url = "http://longzhu.com/channels/lzxx"
-            # list << longzhu_data(page_url)
+      # page_url = "http://longzhu.com/channels/lzxx"
+      # list << longzhu_data(page_url)
 
-            list.flatten!
+      list.flatten!
 
-            update_lives(list, App::LIVE_SHOW_KEY)
-        rescue Exception => e
-            exception_log(e, "星娱星秀")
-        end
-        @agent.history.clear
-        GC.start
+      update_lives(list, App::LIVE_SHOW_KEY)
     end
 
     private
@@ -419,7 +341,7 @@ class Crawler
                 {
                     "detail" => {
                         url: "https://www.douyu.com" + live.search("a").attr("href").text,
-                        img_url: live.search("img").attr("data-original").text,
+                        img_url: live.search("img").last.attr("data-original"),
                         name: live.search("span.dy-name").text,
                         title: live.search("h3.ellipsis").text.strip,
                         platform: "斗鱼"
@@ -427,6 +349,9 @@ class Crawler
                     "num" => live.search("span.dy-num").text
                 }
             end
+        rescue => e
+            exception_log(e, "斗鱼直播: #{page_url}")
+            []
         end
 
         def xiongmao_data(page_url)
@@ -444,11 +369,14 @@ class Crawler
                     "num" => live.search("span.video-number").text
                 }
             end
+        rescue => e
+            exception_log(e, "熊猫直播: #{page_url}")
+            []
         end
 
         def huya_data(page_url)
             page = @agent.get(page_url)
-	        lives = page.search("ul#js-live-list li")
+	          lives = page.search("ul#js-live-list li")
             lives.map do |live|
                 {
                     "detail" => {
@@ -461,6 +389,9 @@ class Crawler
                     "num" => live.search("i.js-num").text
                 }
             end
+        rescue => e
+            exception_log(e, "虎牙直播: #{page_url}")
+            []
         end
 
         def zhanqi_data(page_url)
@@ -478,6 +409,9 @@ class Crawler
                     "num" => live.search("span.dv").first.text
                 }
             end
+        rescue => e
+            exception_log(e, "战旗直播: #{page_url}")
+            []
         end
 
         def longzhu_data(page_url)
@@ -495,6 +429,9 @@ class Crawler
                     "num" => live.search("span.livecard-meta-item-text").children[0].text
                 }
             end
+        rescue => e
+            exception_log(e, "龙珠直播: #{page_url}")
+            []
         end
 
         def quanmin_data(page_url)
@@ -512,6 +449,9 @@ class Crawler
                     "num" => live.search("span.common_w-card_views-num")[0].children.text
                 }
             end
+        rescue => e
+            exception_log(e, "全名直播: #{page_url}")
+            []
         end
 
         def update_lives(list, cache_key)
