@@ -340,7 +340,7 @@ class Crawler
             lives.map do |live|
                 {
                     "detail" => {
-                        url: "https://www.douyu.com" + live.search("a").attr("href").text,
+                        url: File.join("https://www.douyu.com", live.search("a").attr("href").text),
                         img_url: live.search("img").last.attr("data-original"),
                         name: live.search("span.dy-name").text,
                         title: live.search("h3.ellipsis").text.strip,
@@ -360,7 +360,7 @@ class Crawler
             lives.map do |live|
                 {
                     "detail" => {
-                        url: "http://www.panda.tv" + live.search("a").attr("href").text,
+                        url: File.join("http://www.panda.tv", live.search("a").attr("href").text),
                         img_url: live.search("img").attr("data-original").text,
                         name: live.search("span.video-nickname").text.strip,
                         title: live.search("span.video-title").text.strip,
@@ -400,7 +400,7 @@ class Crawler
             lives.map do |live|
                 {
                     "detail" => {
-                        url: "http://www.zhanqi.tv" + live.search("a").attr("href").text,
+                        url: File.join("http://www.zhanqi.tv", live.search("a").attr("href").text),
                         img_url: live.search("img").first.attributes["src"].value,
                         name: live.search("span.anchor").text,
                         title: live.search("span.name").text.strip,
@@ -440,7 +440,7 @@ class Crawler
             lives.map do |live|
                 {
                     "detail" => {
-                        url: "http://www.quanmin.tv" + live.search("a.common_w-card_href")[0].attributes["href"].value.split(".tv").last,
+                        url: File.join("http://www.quanmin.tv", live.search("a.common_w-card_href")[0].attributes["href"].value.split(".tv").last),
                         img_url: live.search("img.common_w-card_cover")[0].attributes["src"].value,
                         name: live.search("span.common_w-card_host-name")[0].children.text,
                         title: live.search("p.common_w-card_title")[0].children.text.strip,
