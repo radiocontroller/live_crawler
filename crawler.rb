@@ -319,6 +319,23 @@ class Crawler
       update_lives(list, App::LIVE_SHOW_KEY)
     end
 
+    def crawl_ninja
+      list = []
+
+      page_url = "https://chushou.tv/nav-list.htm?targetKey=3-1674-3"
+      list << chushou_data(page_url)
+
+      page_url = "http://www.huya.com/g/4041?promoter=huya_web_205"
+      list << huya_data(page_url)
+
+      page_url = "https://www.douyu.com/g_rzbxs3"
+      list << douyu_data(page_url)
+
+      list.flatten!
+
+      update_lives(list, App::LIVE_NINJA_KEY)
+    end
+
     private
 
         # 在线人数字符串转浮点型
@@ -451,6 +468,26 @@ class Crawler
             end
         rescue => e
             exception_log(e, "全名直播: #{page_url}")
+            []
+        end
+
+        def chushou_data(page_url)
+          page = @agent.get(page_url)
+          lives = page.search("div#liveContent a")
+          lives.map do |live|
+              {
+                  "detail" => {
+                      url: File.join("https://chushou.tv", live.attributes["href"].value),
+                      img_url: live.search("img.liveImages")[0].attributes["data-imgsrc"].value,
+                      name: live.search("span.livePlayerName")[0].attributes["title"].value,
+                      title: live.search("span.videoName")[0].attributes["title"].value,
+                      platform: "触手"
+                  },
+                  "num" => live.search("span.liveCount")[0].children[0].text
+              }
+          end
+        rescue => e
+            exception_log(e, "触手直播: #{page_url}")
             []
         end
 

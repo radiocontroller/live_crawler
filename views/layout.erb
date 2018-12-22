@@ -56,6 +56,9 @@
                     <li class="<%= 'current' if '/chess' == request.path_info %>">
                         <a href="/chess">棋牌竞技</a>
                     </li>
+                    <li class="<%= 'current' if '/ninja' == request.path_info %>">
+                        <a href="/ninja">忍3</a>
+                    </li>
                     <li class="<%= 'current' if '/movie' == request.path_info %>">
                         <a href="/movie">电影相关</a>
                     </li>
@@ -75,12 +78,12 @@
   $(function() {
     $("img.lazy").lazyload({effect: "fadeIn"});
   });
-  
+
   var _hmt = _hmt || [];
   (function() {
     var hm = document.createElement("script");
     hm.src = "https://hm.baidu.com/hm.js?4b006e61bc5e22d3766f545d7c873e71";
-    var s = document.getElementsByTagName("script")[0]; 
+    var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
   })();
 </script>

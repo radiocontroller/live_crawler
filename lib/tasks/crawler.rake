@@ -20,6 +20,7 @@ namespace :crawler do
       Crawler.instance.crawl_csgo
       Crawler.instance.crawl_chess
       Crawler.instance.crawl_movie
+      Crawler.instance.crawl_ninja
       Crawler.instance.crawl_show
 
       #File.delete(pid_file) if File.exists? pid_file

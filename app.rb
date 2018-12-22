@@ -22,6 +22,7 @@ class App < Sinatra::Base
     LIVE_MOVIE_KEY = "live:movie:key"
     LIVE_SHOW_KEY = "live:show:key"
     LIVE_JDQS_KEY = "live:jdqs:key"
+    LIVE_NINJA_KEY = "live:ninja:key"
 
     PAGE_SIZE = 40
     $redis = Redis.new
@@ -64,6 +65,7 @@ class App < Sinatra::Base
             { title: 'QQ飞车', path: 'speed' },
             { title: 'CS:GO', path: 'csgo' },
             { title: '棋牌竞技', path: 'chess' },
+            { title: '忍3', path: 'ninja' },
             { title: '电影相关', path: 'movie' }
           ].to_json
         end
@@ -153,6 +155,12 @@ class App < Sinatra::Base
             erb :index, :layout => :'layout'
         end
 
+        get '/ninja' do
+            @lives = $redis.zrevrange(LIVE_NINJA_KEY, 0, -1, :with_scores => true)
+                        .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
+            erb :index, :layout => :'layout'
+        end
+
         get '/movie' do
             @lives = $redis.zrevrange(LIVE_MOVIE_KEY, 0, -1, :with_scores => true)
                         .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
@@ -183,6 +191,8 @@ class App < Sinatra::Base
                 "http://www.longzhu.com/favicon.ico"
               when "全民"
                 "https://www.quanmin.tv/favicon.ico"
+              when "触手"
+                "https://chushou.tv/favicon.ico"
               end
             end
 
@@ -198,6 +208,8 @@ class App < Sinatra::Base
                 "longzhu"
               when "全民"
                 "quanmin"
+              when "触手"
+                "chushou"
               end
             end
         end
