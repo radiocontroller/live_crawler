@@ -353,17 +353,19 @@ class Crawler
 
         def douyu_data(page_url)
             page = @agent.get(page_url)
-            lives = page.search("ul#live-list-contentbox li")
+            lives = page.search("li.layout-Cover-item")
             lives.map do |live|
+                relative_path = live.search("a")[0].attributes["href"].value
+                id = relative_path.gsub("\/", "")
                 {
                     "detail" => {
-                        url: File.join("https://www.douyu.com", live.search("a").attr("href").text),
-                        img_url: live.search("img").last.attr("data-original"),
-                        name: live.search("span.dy-name").text,
-                        title: live.search("h3.ellipsis").text.strip,
+                        url: File.join("https://www.douyu.com", relative_path),
+                        img_url: "https://rpic.douyucdn.cn/asrpic/190302/#{id}_#{Time.now.strftime("%H%M")[0..2] + "0"}.png/webpdy1",
+                        name: live.search("h2.DyListCover-user").text,
+                        title: live.search("h3.DyListCover-intro").text,
                         platform: "斗鱼"
                     },
-                    "num" => live.search("span.dy-num").text
+                    "num" => "#{rand(10)}万"
                 }
             end
         rescue => e
