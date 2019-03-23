@@ -19,7 +19,7 @@ class Crawler
       list = []
 
       # 斗鱼直播
-      page_url = "https://www.douyu.com/directory/game/LOL"
+      page_url = "https://www.douyu.com/g_LOL"
       list << douyu_data(page_url)
 
       # 熊猫直播
@@ -46,7 +46,7 @@ class Crawler
     def crawl_zjgame
       list = []
 
-      page_url = "https://www.douyu.com/directory/game/TVgame"
+      page_url = "https://www.douyu.com/g_TVgame"
       list << douyu_data(page_url)
 
       page_url = "http://www.panda.tv/cate/zhuji"
@@ -69,7 +69,7 @@ class Crawler
     def crawl_jdqs
       list = []
 
-      page_url = "https://www.douyu.com/directory/game/jdqs"
+      page_url = "https://www.douyu.com/g_jdqs"
       list << douyu_data(page_url)
 
       page_url = "https://www.panda.tv/cate/pubg"
@@ -92,7 +92,7 @@ class Crawler
     def crawl_cf
       list = []
 
-      page_url = "https://www.douyu.com/directory/game/CF"
+      page_url = "https://www.douyu.com/g_CF"
       list << douyu_data(page_url)
 
       page_url = "http://www.panda.tv/cate/cf"
@@ -138,7 +138,7 @@ class Crawler
     def crawl_lushi
       list = []
 
-      page_url = "https://www.douyu.com/directory/game/How"
+      page_url = "https://www.douyu.com/g_How"
       list << douyu_data(page_url)
 
       page_url = "http://www.panda.tv/cate/hearthstone"
@@ -161,7 +161,7 @@ class Crawler
     def crawl_shouwang
       list = []
 
-      page_url = "https://www.douyu.com/directory/game/Overwatch"
+      page_url = "https://www.douyu.com/g_Overwatch"
       list << douyu_data(page_url)
 
       page_url = "http://www.panda.tv/cate/overwatch"
@@ -184,7 +184,7 @@ class Crawler
     def crawl_wangzhe
       list = []
 
-      page_url = "https://www.douyu.com/directory/game/wzry"
+      page_url = "https://www.douyu.com/g_wzry"
       list << douyu_data(page_url)
 
       page_url = "http://www.panda.tv/cate/kingglory"
@@ -207,8 +207,8 @@ class Crawler
     def crawl_speed
       list = []
 
-      page_url = "https://www.douyu.com/directory/subCate/jingsu/396"
-      list << douyu_data(page_url)
+      # page_url = "https://www.douyu.com/directory/subCate/jingsu/396"
+      # list << douyu_data(page_url)
 
       page_url = "http://www.quanmin.tv/game/qqfeiche"
       list << quanmin_data(page_url)
@@ -227,7 +227,7 @@ class Crawler
     def crawl_csgo
       list = []
 
-      page_url = "https://www.douyu.com/directory/game/CSGO"
+      page_url = "https://www.douyu.com/g_CSGO"
       list << douyu_data(page_url)
 
       page_url = "http://www.panda.tv/cate/csgo"
@@ -250,7 +250,7 @@ class Crawler
     def crawl_chess
       list = []
 
-      page_url = "https://www.douyu.com/directory/game/qipai"
+      page_url = "https://www.douyu.com/g_qipai"
       list << douyu_data(page_url)
 
       page_url = "http://www.panda.tv/cate/qipai"
@@ -270,7 +270,7 @@ class Crawler
     def crawl_movie
       list = []
 
-      page_url = "https://www.douyu.com/directory/game/stdp"
+      page_url = "https://www.douyu.com/g_stdp"
       list << douyu_data(page_url)
 
       page_url = "http://www.panda.tv/cate/cartoon"
@@ -293,7 +293,7 @@ class Crawler
     def crawl_show
       list = []
 
-      page_url = "https://www.douyu.com/directory/game/xingyu"
+      page_url = "https://www.douyu.com/g_xingyu"
       list << douyu_data(page_url)
 
       page_url = "https://www.douyu.com/directory/game/music"  # 音乐
@@ -353,19 +353,18 @@ class Crawler
 
         def douyu_data(page_url)
             page = @agent.get(page_url)
-            lives = page.search("li.layout-Cover-item")
+            text = page.search("script")[3].children[0].text
+            lives = JSON.parse("{#{text.scan(/[^{]*\{(.*)/)[0][0].chop}")["list"]
             lives.map do |live|
-                relative_path = live.search("a")[0].attributes["href"].value
-                id = relative_path.gsub("\/", "")
                 {
                     "detail" => {
-                        url: File.join("https://www.douyu.com", relative_path),
-                        img_url: "https://rpic.douyucdn.cn/asrpic/190302/#{id}_#{Time.now.strftime("%H%M")[0..2] + "0"}.png/webpdy1",
-                        name: live.search("h2.DyListCover-user").text,
-                        title: live.search("h3.DyListCover-intro").text,
+                        url: File.join("https://www.douyu.com", live["url"]),
+                        img_url: live["rs1"],
+                        name: live["nn"],
+                        title: live["rn"],
                         platform: "斗鱼"
                     },
-                    "num" => "#{rand(10)}万"
+                    "num" => live["ol"].to_s
                 }
             end
         rescue => e
