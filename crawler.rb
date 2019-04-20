@@ -431,7 +431,7 @@ class Crawler
 
         def douyu_data(page_url)
             page = @agent.get(page_url)
-            text = page.search("script")[3].children[0].text
+            text = page.search("script")[4].children[0].text
             lives = JSON.parse("{#{text.scan(/[^{]*\{(.*)/)[0][0].chop}")["list"]
             lives.map do |live|
                 {
