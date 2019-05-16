@@ -167,9 +167,9 @@ class App < Sinatra::Base
             erb :index, :layout => :'layout'
         end
 
-        get '/huangye' do
-          erb :huangye, :layout => false
-        end
+        # get '/huangye' do
+        #   erb :huangye, :layout => false
+        # end
 
         helpers do
             def convert_num(num)
