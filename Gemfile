@@ -17,6 +17,8 @@ group :production do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-rails-console'
+  gem 'rbnacl'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development do
