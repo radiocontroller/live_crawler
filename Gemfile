@@ -19,6 +19,7 @@ group :production do
   gem 'capistrano-rails-console'
   gem 'rbnacl'
   gem 'bcrypt_pbkdf'
+  gem 'ed25519'
 end
 
 group :development do
