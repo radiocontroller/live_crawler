@@ -189,14 +189,10 @@ class App < Sinatra::Base
                 "http://www.douyu.com/favicon.ico"
               when "虎牙"
                 "http://www.huya.com/favicon.ico"
-              when "熊猫"
-                "https://www.panda.tv/favicon.ico"
-              when "龙珠"
-                "http://www.longzhu.com/favicon.ico"
-              when "全民"
-                "https://www.quanmin.tv/favicon.ico"
               when "触手"
                 "https://chushou.tv/favicon.ico"
+              when "企鹅"
+                "https://egame.qq.com/favicon.ico"
               end
             end
 
@@ -206,14 +202,10 @@ class App < Sinatra::Base
                 "douyu"
               when "虎牙"
                 "huya"
-              when "熊猫"
-                "xiongmao"
-              when "龙珠"
-                "longzhu"
-              when "全民"
-                "quanmin"
               when "触手"
                 "chushou"
+              when "企鹅"
+                "qie_"
               end
             end
         end

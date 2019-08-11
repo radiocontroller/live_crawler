@@ -6,37 +6,31 @@ require './app'
 
 class Crawler
     include Singleton
+    DOUYU = 'https://www.douyu.com'
+    HUYA = 'https://www.huya.com'
+    CHUSHOU = 'https://chushou.tv'
+    QIE = 'https://egame.qq.com'
 
     def initialize
-        @redis = Redis.new
-        @logger = Logger.new("*.log")
-        @agent = Mechanize.new
-        @agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
-	      @agent.max_history = 0
+      @redis = Redis.new
+      @logger = Logger.new("*.log")
+      @agent = Mechanize.new
+      @agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
+	    @agent.max_history = 0
+      @agent.user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'
     end
 
     def crawl_lol
       list = []
 
-      # 斗鱼直播
-      page_url = "https://www.douyu.com/g_LOL"
+      page_url = "#{DOUYU}/g_LOL"
       list << douyu_data(page_url)
 
-      # 熊猫直播
-      page_url = "http://www.panda.tv/cate/lol"
-      list << xiongmao_data(page_url)
-
-      # 虎牙直播
-      page_url = "http://www.huya.com/g/lol"
+      page_url = "#{HUYA}/g/lol"
       list << huya_data(page_url)
 
-      # 龙珠直播
-      page_url = "http://longzhu.com/channels/lol?from=rmgame"
-      list << longzhu_data(page_url)
-
-      # 全民tv
-      page_url = "http://www.quanmin.tv/game/lol"
-      list << quanmin_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=lol"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -46,20 +40,14 @@ class Crawler
     def crawl_zjgame
       list = []
 
-      page_url = "https://www.douyu.com/g_TVgame"
+      page_url = "#{DOUYU}/g_TVgame"
       list << douyu_data(page_url)
 
-      page_url = "http://www.panda.tv/cate/zhuji"
-      list << xiongmao_data(page_url)
-
-      page_url = "http://www.huya.com/g/ZJGAME"
+      page_url = "#{HUYA}/g/ZJGAME"
       list << huya_data(page_url)
 
-      page_url = "http://longzhu.com/channels/djzjjj?from=topbargame"
-      list << longzhu_data(page_url)
-
-      page_url = "http://www.quanmin.tv/game/tvgame"
-      list << quanmin_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=2000000140"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -69,20 +57,14 @@ class Crawler
     def crawl_jdqs
       list = []
 
-      page_url = "https://www.douyu.com/g_jdqs"
+      page_url = "#{DOUYU}/g_jdqs"
       list << douyu_data(page_url)
 
-      page_url = "https://www.panda.tv/cate/pubg"
-      list << xiongmao_data(page_url)
-
-      page_url = "http://www.huya.com/g/2793"
+      page_url = "#{HUYA}/g/2793"
       list << huya_data(page_url)
 
-      page_url = "http://longzhu.com/channels/jdqs?from=figame"
-      list << longzhu_data(page_url)
-
-      page_url = "https://www.quanmin.tv/game/juediqiusheng"
-      list << quanmin_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=2000000133"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -92,20 +74,14 @@ class Crawler
     def crawl_cf
       list = []
 
-      page_url = "https://www.douyu.com/g_CF"
+      page_url = "#{DOUYU}/g_CF"
       list << douyu_data(page_url)
 
-      page_url = "http://www.panda.tv/cate/cf"
-      list << xiongmao_data(page_url)
-
-      page_url = "http://www.huya.com/g/4"
+      page_url = "#{HUYA}/g/4"
       list << huya_data(page_url)
 
-      page_url = "http://longzhu.com/channels/cf?from=topbargame"
-      list << longzhu_data(page_url)
-
-      page_url = "http://www.quanmin.tv/game/cfpc"
-      list << quanmin_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=Cf"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -115,20 +91,14 @@ class Crawler
     def crawl_outdoor
       list = []
 
-      page_url = "https://www.douyu.com/g_HW"
+      page_url = "#{DOUYU}/g_HW"
       list << douyu_data(page_url)
 
-      page_url = "http://www.panda.tv/cate/hwzb"
-      list << xiongmao_data(page_url)
-
-      page_url = "http://www.huya.com/g/huwai"
+      page_url = "#{HUYA}/g/huwai"
       list << huya_data(page_url)
 
-      # page_url = "http://longzhu.com/channels/huwai"
-      # list << longzhu_data(page_url)
-
-      page_url = "http://www.quanmin.tv/game/huwai"
-      list << quanmin_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=40000001470"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -138,20 +108,14 @@ class Crawler
     def crawl_lushi
       list = []
 
-      page_url = "https://www.douyu.com/g_How"
+      page_url = "#{DOUYU}/g_How"
       list << douyu_data(page_url)
 
-      page_url = "http://www.panda.tv/cate/hearthstone"
-      list << xiongmao_data(page_url)
-
-      page_url = "http://www.huya.com/g/393"
+      page_url = "#{HUYA}/g/393"
       list << huya_data(page_url)
 
-      page_url = "http://longzhu.com/channels/hs"
-      list << longzhu_data(page_url)
-
-      page_url = "http://www.quanmin.tv/game/hearthstone"
-      list << quanmin_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=2000000105"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -161,20 +125,14 @@ class Crawler
     def crawl_shouwang
       list = []
 
-      page_url = "https://www.douyu.com/g_Overwatch"
+      page_url = "#{DOUYU}/g_Overwatch"
       list << douyu_data(page_url)
 
-      page_url = "http://www.panda.tv/cate/overwatch"
-      list << xiongmao_data(page_url)
-
-      page_url = "http://www.huya.com/g/2174"
+      page_url = "#{HUYA}/g/2174"
       list << huya_data(page_url)
 
-      page_url = "http://longzhu.com/channels/ow"
-      list << longzhu_data(page_url)
-
-      page_url = "http://www.quanmin.tv/game/overwatch"
-      list << quanmin_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=2000000107"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -184,20 +142,14 @@ class Crawler
     def crawl_wangzhe
       list = []
 
-      page_url = "https://www.douyu.com/g_wzry"
+      page_url = "#{DOUYU}/g_wzry"
       list << douyu_data(page_url)
 
-      page_url = "http://www.panda.tv/cate/kingglory"
-      list << xiongmao_data(page_url)
-
-      page_url = "http://www.huya.com/g/2336"
+      page_url = "#{HUYA}/g/2336"
       list << huya_data(page_url)
 
-      page_url = "http://longzhu.com/channels/wzry"
-      list << longzhu_data(page_url)
-
-      page_url = "http://www.quanmin.tv/game/wangzhe"
-      list << quanmin_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=1104466820"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -207,17 +159,11 @@ class Crawler
     def crawl_speed
       list = []
 
-      # page_url = "https://www.douyu.com/directory/subCate/jingsu/396"
-      # list << douyu_data(page_url)
-
-      page_url = "http://www.quanmin.tv/game/qqfeiche"
-      list << quanmin_data(page_url)
-
-      page_url = "http://www.huya.com/g/9"
+      page_url = "#{HUYA}/g/9"
       list << huya_data(page_url)
 
-      page_url = "http://longzhu.com/channels/speed?from=figame"
-      list << longzhu_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=QQfc"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -227,20 +173,11 @@ class Crawler
     def crawl_csgo
       list = []
 
-      page_url = "https://www.douyu.com/g_CSGO"
+      page_url = "#{DOUYU}/g_CSGO"
       list << douyu_data(page_url)
 
-      page_url = "http://www.panda.tv/cate/csgo"
-      list << xiongmao_data(page_url)
-
-      page_url = "http://www.huya.com/g/862"
+      page_url = "#{HUYA}/g/862"
       list << huya_data(page_url)
-
-      page_url = "http://longzhu.com/channels/csgo"
-      list << longzhu_data(page_url)
-
-      page_url = "http://www.quanmin.tv/game/csgo"
-      list << quanmin_data(page_url)
 
       list.flatten!
 
@@ -250,17 +187,14 @@ class Crawler
     def crawl_chess
       list = []
 
-      page_url = "https://www.douyu.com/g_qipai"
+      page_url = "#{DOUYU}/g_qipai"
       list << douyu_data(page_url)
 
-      page_url = "http://www.panda.tv/cate/qipai"
-      list << xiongmao_data(page_url)
-
-      page_url = "http://www.huya.com/g/100036"
+      page_url = "#{HUYA}/g/100036"
       list << huya_data(page_url)
 
-      page_url = "http://www.quanmin.tv/game/qipai"
-      list << quanmin_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=2000000008"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -270,20 +204,14 @@ class Crawler
     def crawl_movie
       list = []
 
-      page_url = "https://www.douyu.com/g_stdp"
+      page_url = "#{DOUYU}/g_stdp"
       list << douyu_data(page_url)
 
-      page_url = "http://www.panda.tv/cate/cartoon"
-      list << xiongmao_data(page_url)
-
-      page_url = "http://www.huya.com/g/seeTogether"
+      page_url = "#{HUYA}/g/seeTogether"
       list << huya_data(page_url)
 
-      page_url = "http://www.quanmin.tv/game/dzh"
-      list << quanmin_data(page_url)
-
-      page_url = "http://longzhu.com/channels/movie"
-      list << longzhu_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=2000000110"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -293,26 +221,17 @@ class Crawler
     def crawl_show
       list = []
 
-      page_url = "https://www.douyu.com/g_xingyu"
+      page_url = "#{DOUYU}/g_xingyu"
       list << douyu_data(page_url)
 
-      page_url = "https://www.douyu.com/directory/game/music"  # 音乐
+      page_url = "#{DOUYU}/directory/game/music"  # 音乐
       list << douyu_data(page_url)
 
-      page_url = "https://www.panda.tv/cate/yzdr"
-      list << xiongmao_data(page_url)
-
-      page_url = "https://www.panda.tv/cate/music"  # 音乐
-      list << xiongmao_data(page_url)
-
-      page_url = "http://www.huya.com/g/xingxiu"
+      page_url = "#{HUYA}/g/xingxiu"
       list << huya_data(page_url)
 
-      # page_url = "https://www.quanmin.tv/game/showing"
-      # list << quanmin_data(page_url)
-
-      # page_url = "http://longzhu.com/channels/lzxx"
-      # list << longzhu_data(page_url)
+      page_url = "#{QIE}/livelist?layoutid=40000001472"
+      list << qie_data(page_url)
 
       list.flatten!
 
@@ -322,13 +241,13 @@ class Crawler
     def crawl_ninja
       list = []
 
-      page_url = "https://chushou.tv/nav-list.htm?targetKey=3-1674-3"
+      page_url = "#{CHUSHOU}/nav-list.htm?targetKey=3-1674-3"
       list << chushou_data(page_url)
 
-      page_url = "http://www.huya.com/g/4041?promoter=huya_web_205"
+      page_url = "#{HUYA}/g/4041?promoter=huya_web_205"
       list << huya_data(page_url)
 
-      page_url = "https://www.douyu.com/g_rzbxs3"
+      page_url = "#{DOUYU}/g_rzbxs3"
       list << douyu_data(page_url)
 
       list.flatten!
@@ -358,7 +277,7 @@ class Crawler
             lives.map do |live|
                 {
                     "detail" => {
-                        url: File.join("https://www.douyu.com", live["url"]),
+                        url: File.join("#{DOUYU}", live["url"]),
                         img_url: live["rs1"],
                         name: live["nn"],
                         title: live["rn"],
@@ -369,26 +288,6 @@ class Crawler
             end
         rescue => e
             exception_log(e, "斗鱼直播: #{page_url}")
-            []
-        end
-
-        def xiongmao_data(page_url)
-            page = @agent.get(page_url)
-            lives = page.search("ul#sortdetail-container li.video-no-tag")
-            lives.map do |live|
-                {
-                    "detail" => {
-                        url: File.join("http://www.panda.tv", live.search("a").attr("href").text),
-                        img_url: live.search("img").attr("data-original").text,
-                        name: live.search("span.video-nickname").text.strip,
-                        title: live.search("span.video-title").text.strip,
-                        platform: "熊猫"
-                    },
-                    "num" => live.search("span.video-number").text
-                }
-            end
-        rescue => e
-            exception_log(e, "熊猫直播: #{page_url}")
             []
         end
 
@@ -412,73 +311,13 @@ class Crawler
             []
         end
 
-        def zhanqi_data(page_url)
-            page = @agent.get(page_url)
-            lives = page.search("ul.js-room-list-ul li")
-            lives.map do |live|
-                {
-                    "detail" => {
-                        url: File.join("http://www.zhanqi.tv", live.search("a").attr("href").text),
-                        img_url: live.search("img").first.attributes["src"].value,
-                        name: live.search("span.anchor").text,
-                        title: live.search("span.name").text.strip,
-                        platform: "战旗"
-                    },
-                    "num" => live.search("span.dv").first.text
-                }
-            end
-        rescue => e
-            exception_log(e, "战旗直播: #{page_url}")
-            []
-        end
-
-        def longzhu_data(page_url)
-            page = @agent.get(page_url)
-            lives = page.search("a.livecard")
-            lives.map do |live|
-                {
-                    "detail" => {
-                        url: "http:" + live.attributes["href"].value,
-                        img_url: live.search("img")[0].attributes["src"].value,
-                        name: live.search("strong.livecard-modal-username")[0].children.text,
-                        title: live.search("h3.listcard-caption").children.text.strip,
-                        platform: "龙珠"
-                    },
-                    "num" => live.search("span.livecard-meta-item-text").children[0].text
-                }
-            end
-        rescue => e
-            exception_log(e, "龙珠直播: #{page_url}")
-            []
-        end
-
-        def quanmin_data(page_url)
-            page = @agent.get(page_url)
-            lives = page.search("li.list_w-video")
-            lives.map do |live|
-                {
-                    "detail" => {
-                        url: File.join("http://www.quanmin.tv", live.search("a.common_w-card_href")[0].attributes["href"].value.split(".tv").last),
-                        img_url: live.search("img.common_w-card_cover")[0].attributes["src"].value,
-                        name: live.search("span.common_w-card_host-name")[0].children.text,
-                        title: live.search("p.common_w-card_title")[0].children.text.strip,
-                        platform: "全民"
-                    },
-                    "num" => live.search("span.common_w-card_views-num")[0].children.text
-                }
-            end
-        rescue => e
-            exception_log(e, "全名直播: #{page_url}")
-            []
-        end
-
         def chushou_data(page_url)
           page = @agent.get(page_url)
           lives = page.search("div#liveContent a")
           lives.map do |live|
               {
                   "detail" => {
-                      url: File.join("https://chushou.tv", live.attributes["href"].value),
+                      url: File.join(CHUSHOU, live.attributes["href"].value),
                       img_url: live.search("img.liveImages")[0].attributes["data-imgsrc"].value,
                       name: live.search("span.livePlayerName")[0].attributes["title"].value,
                       title: live.search("span.videoName")[0].attributes["title"].value,
@@ -489,6 +328,26 @@ class Crawler
           end
         rescue => e
             exception_log(e, "触手直播: #{page_url}")
+            []
+        end
+
+        def qie_data(page_url)
+          page = @agent.get(page_url)
+          lives = page.search("li.gui-list-normal a")
+          lives.map do |live|
+              {
+                  "detail" => {
+                      url: File.join(QIE, live.attributes["href"].value),
+                      img_url: live.search('img')[0].attributes['src'].value,
+                      name: live.search('p.name')[0].children[0].text,
+                      title: live.search('h4')[0].children[0].text,
+                      platform: "企鹅"
+                  },
+                  "num" => live.search('span.popular').text.gsub(/\s/, '')
+              }
+          end
+        rescue => e
+            exception_log(e, "企鹅直播: #{page_url}")
             []
         end
 
