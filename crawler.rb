@@ -338,7 +338,7 @@ class Crawler
               {
                   "detail" => {
                       url: File.join(QIE, live.attributes["href"].value),
-                      img_url: live.search('img')[0].attributes['src'].value,
+                      img_url: live.search('div.content').search('img')[-1].attributes['src'].value,
                       name: live.search('p.name')[0].children[0].text,
                       title: live.search('h4')[0].children[0].text,
                       platform: "企鹅"
