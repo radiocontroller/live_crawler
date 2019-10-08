@@ -159,6 +159,9 @@ class Crawler
     def crawl_speed
       list = []
 
+      page_url = "#{DOUYU}/g_qqfcdy"
+      list << douyu_data(page_url)
+
       page_url = "#{HUYA}/g/9"
       list << huya_data(page_url)
 
