@@ -40,7 +40,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     ed25519 (1.2.4)
     eventmachine (1.2.3)
-    ffi (1.9.18)
+    ffi (1.11.1)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.8.1)
