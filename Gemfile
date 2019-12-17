@@ -1,4 +1,6 @@
-source "https://gems.ruby-china.org"
+# frozen_string_literal: true
+
+source "https://gems.ruby-china.com"
 
 gem 'sinatra'
 gem 'json'

@@ -1,0 +1,163 @@
+rake aborted!
+NameError: uninitialized constant App::LIVE_LOL_KEY
+/crawler_with_sinatra/crawler.rb:37:in `crawl_lol'
+lib/tasks/crawler.rake:7:in `block (2 levels) in <top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+Tasks: TOP => crawler:crawl_all
+(See full trace by running task with --trace)
+rake aborted!
+NameError: uninitialized constant App::LIVE_LOL_KEY
+/crawler_with_sinatra/crawler.rb:37:in `crawl_lol'
+lib/tasks/crawler.rake:7:in `block (2 levels) in <top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+Tasks: TOP => crawler:crawl_all
+(See full trace by running task with --trace)
+rake aborted!
+NameError: uninitialized constant App::LIVE_LOL_KEY
+/crawler_with_sinatra/crawler.rb:37:in `crawl_lol'
+lib/tasks/crawler.rake:7:in `block (2 levels) in <top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+Tasks: TOP => crawler:crawl_all
+(See full trace by running task with --trace)
+rake aborted!
+NameError: uninitialized constant App::LIVE_LOL_KEY
+/crawler_with_sinatra/crawler.rb:39:in `crawl_lol'
+lib/tasks/crawler.rake:7:in `block (2 levels) in <top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+Tasks: TOP => crawler:crawl_all
+(See full trace by running task with --trace)
+rake aborted!
+NameError: uninitialized constant App::LIVE_LOL_KEY
+/crawler_with_sinatra/crawler.rb:40:in `crawl_lol'
+lib/tasks/crawler.rake:7:in `block (2 levels) in <top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+Tasks: TOP => crawler:crawl_all
+(See full trace by running task with --trace)
+rake aborted!
+NameError: uninitialized constant App::LIVE_LOL_KEY
+/crawler_with_sinatra/crawler.rb:40:in `crawl_lol'
+lib/tasks/crawler.rake:7:in `block (2 levels) in <top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+Tasks: TOP => crawler:crawl_all
+(See full trace by running task with --trace)
+rake aborted!
+NameError: uninitialized constant App::LIVE_LOL_KEY
+/crawler_with_sinatra/crawler.rb:44:in `crawl_lol'
+lib/tasks/crawler.rake:7:in `block (2 levels) in <top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+Tasks: TOP => crawler:crawl_all
+(See full trace by running task with --trace)
+rake aborted!
+NameError: uninitialized constant App::LIVE_LOL_KEY
+/crawler_with_sinatra/crawler.rb:45:in `crawl_lol'
+lib/tasks/crawler.rake:7:in `block (2 levels) in <top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+Tasks: TOP => crawler:crawl_all
+(See full trace by running task with --trace)
+rake aborted!
+IndexError: string not matched
+/crawler_with_sinatra/app.rb:15:in `[]='
+/crawler_with_sinatra/app.rb:15:in `block in <class:App>'
+/crawler_with_sinatra/app.rb:15:in `each'
+/crawler_with_sinatra/app.rb:15:in `each_with_object'
+/crawler_with_sinatra/app.rb:15:in `<class:App>'
+/crawler_with_sinatra/app.rb:9:in `<top (required)>'
+/crawler_with_sinatra/crawler.rb:5:in `<top (required)>'
+lib/tasks/crawler.rake:1:in `<top (required)>'
+/crawler_with_sinatra/rakefile:1:in `load'
+/crawler_with_sinatra/rakefile:1:in `block in <top (required)>'
+/crawler_with_sinatra/rakefile:1:in `each'
+/crawler_with_sinatra/rakefile:1:in `<top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+(See full trace by running task with --trace)
+rake aborted!
+TypeError: no implicit conversion of Hash into Integer
+/crawler_with_sinatra/app.rb:15:in `[]='
+/crawler_with_sinatra/app.rb:15:in `block in <class:App>'
+/crawler_with_sinatra/app.rb:15:in `each'
+/crawler_with_sinatra/app.rb:15:in `each_with_object'
+/crawler_with_sinatra/app.rb:15:in `<class:App>'
+/crawler_with_sinatra/app.rb:9:in `<top (required)>'
+/crawler_with_sinatra/crawler.rb:5:in `<top (required)>'
+lib/tasks/crawler.rake:1:in `<top (required)>'
+/crawler_with_sinatra/rakefile:1:in `load'
+/crawler_with_sinatra/rakefile:1:in `block in <top (required)>'
+/crawler_with_sinatra/rakefile:1:in `each'
+/crawler_with_sinatra/rakefile:1:in `<top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+(See full trace by running task with --trace)
+rake aborted!
+TypeError: no implicit conversion of Hash into Integer
+/crawler_with_sinatra/app.rb:15:in `[]='
+/crawler_with_sinatra/app.rb:15:in `block in <class:App>'
+/crawler_with_sinatra/app.rb:15:in `each'
+/crawler_with_sinatra/app.rb:15:in `each_with_object'
+/crawler_with_sinatra/app.rb:15:in `<class:App>'
+/crawler_with_sinatra/app.rb:9:in `<top (required)>'
+/crawler_with_sinatra/crawler.rb:5:in `<top (required)>'
+lib/tasks/crawler.rake:1:in `<top (required)>'
+/crawler_with_sinatra/rakefile:1:in `load'
+/crawler_with_sinatra/rakefile:1:in `block in <top (required)>'
+/crawler_with_sinatra/rakefile:1:in `each'
+/crawler_with_sinatra/rakefile:1:in `<top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+(See full trace by running task with --trace)
+lib/tasks/crawler.rake:21: warning: key :speed is duplicated and overwritten on line 23
+rake aborted!
+TypeError: no implicit conversion of Hash into Integer
+/crawler_with_sinatra/app.rb:15:in `[]='
+/crawler_with_sinatra/app.rb:15:in `block in <class:App>'
+/crawler_with_sinatra/app.rb:15:in `each'
+/crawler_with_sinatra/app.rb:15:in `each_with_object'
+/crawler_with_sinatra/app.rb:15:in `<class:App>'
+/crawler_with_sinatra/app.rb:9:in `<top (required)>'
+/crawler_with_sinatra/crawler.rb:5:in `<top (required)>'
+lib/tasks/crawler.rake:1:in `<top (required)>'
+/crawler_with_sinatra/rakefile:1:in `load'
+/crawler_with_sinatra/rakefile:1:in `block in <top (required)>'
+/crawler_with_sinatra/rakefile:1:in `each'
+/crawler_with_sinatra/rakefile:1:in `<top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+(See full trace by running task with --trace)
+rake aborted!
+TypeError: no implicit conversion of Hash into Integer
+/crawler_with_sinatra/app.rb:15:in `[]='
+/crawler_with_sinatra/app.rb:15:in `block in <class:App>'
+/crawler_with_sinatra/app.rb:15:in `each'
+/crawler_with_sinatra/app.rb:15:in `each_with_object'
+/crawler_with_sinatra/app.rb:15:in `<class:App>'
+/crawler_with_sinatra/app.rb:9:in `<top (required)>'
+/crawler_with_sinatra/crawler.rb:5:in `<top (required)>'
+lib/tasks/crawler.rake:1:in `<top (required)>'
+/crawler_with_sinatra/rakefile:1:in `load'
+/crawler_with_sinatra/rakefile:1:in `block in <top (required)>'
+/crawler_with_sinatra/rakefile:1:in `each'
+/crawler_with_sinatra/rakefile:1:in `<top (required)>'
+/usr/local/bundle/gems/rake-12.0.0/exe/rake:27:in `<top (required)>'
+/usr/local/bin/bundle:22:in `load'
+/usr/local/bin/bundle:22:in `<main>'
+(See full trace by running task with --trace)

@@ -1,0 +1,55 @@
+lol:
+  douyu: '/g_LOL'
+  huya: '/g/lol'
+  qie: '/livelist?layoutid=lol'
+zjgame:
+  douyu: '/g_TVgame'
+  huya: '/g/ZJGAME'
+  qie: '/livelist?layoutid=2000000140'
+jdqs:
+  douyu: '/g_jdqs'
+  huya: '/g/2793'
+  qie: '/livelist?layoutid=2000000133'
+cf:
+  douyu: '/g_CF'
+  huya: '/g/4'
+  qie: '/livelist?layoutid=Cf'
+outdoor:
+  douyu: '/g_HW'
+  huya: '/g/huwai'
+  qie: '/livelist?layoutid=40000001470'
+lushi:
+  douyu: '/g_How'
+  huya: '/g/393'
+  qie: '/livelist?layoutid=2000000105'
+shouwang:
+  douyu: '/g_Overwatch'
+  huya: '/g/2174'
+  qie: '/livelist?layoutid=2000000107'
+wangzhe:
+  douyu: '/g_wzry'
+  huya: '/g/2336'
+  qie: '/livelist?layoutid=1104466820'
+speed:
+  douyu: '/g_qqfcdy'
+  huya: '/g/9'
+  qie: '/livelist?layoutid=QQfc'
+csgo:
+  douyu: '/g_CSGO'
+  huya: '/g/862'
+chess:
+  douyu: '/g_qipai'
+  huya: '/g/100036'
+  qie: '/livelist?layoutid=2000000008'
+movie:
+  douyu: '/g_stdp'
+  huya: '/g/seeTogether'
+  qie: '/livelist?layoutid=2000000110'
+show:
+  douyu: '/g_xingyu'
+  huya: '/g/xingxiu'
+  qie: '/livelist?layoutid=40000001472'
+ninja:
+  douyu: '/g_rzbxs3'
+  huya: '/g/4041?promoter=huya_web_205'
+  chushou: '/nav-list.htm?targetKey=3-1674-3'
