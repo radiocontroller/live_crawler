@@ -33,6 +33,8 @@ class App < Sinatra::Base
   PAGE_SIZE = 40
 
   configure :production do
+    enable :logging
+
     get '/500w' do
       draw = proc do
         arr = (1..33).to_a.shuffle
