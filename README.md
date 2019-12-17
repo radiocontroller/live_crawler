@@ -1,4 +1,4 @@
-docker分支是docker版本, master分支是非docker版本（master分支废弃）
+确保宿主机已安装redis，并且端口为6379
 
 ### 使用说明:
 
