@@ -1,29 +1,29 @@
 <div class="live">
-    <ul>
-        <% @lives.each do |live_json, num| %>
-            <% live = JSON.parse(live_json) %>
-            <li>
-                <span class="plat <%= get_class_by(live['platform']) %>">
-                  <img src="<%= get_favicon_by(live['platform']) %>" alt="<%= live['platform'] %>">
-                  <span><%= live['platform'] %></span>
-                </span>
-                <a href="<%= live['url'] %>" target="_blank">
-                  <img src="<%= live['img_url'] %>"  class="lazy" data-original="<%= live['img_url'] %>"  />
-                  <div class="overlay"></div>
-                  <div class="video-play"></div>
-                </a>
-                <div class="mes">
-                    <div class="title" title="<%= live['title'] %>"><b><%= live['title'] %></b></div>
-                    <div class="sub-mes">
-                      <span class="nick">
-                        <img src="/account.svg"><%= live['name'] %>
-                      </span>
-                      <span class="num">
-                        <img src="/eye.svg" alt=""><%= convert_num(num) %>
-                      </span>
-                    </div>
-                </div>
-            </li>
-        <% end %>
-    </ul>
+  <ul>
+    <% @lives.each do |live_json, num| %>
+      <% live = JSON.parse(live_json) %>
+      <li>
+        <span class="plat <%= get_class_by(live['platform']) %>">
+          <img src="<%= get_favicon_by(live['platform']) %>" alt="<%= live['platform'] %>">
+          <span><%= live['platform'] %></span>
+        </span>
+        <a href="<%= live['url'] %>" target="_blank">
+          <img src="<%= live['img_url'] %>"  class="lazy" data-original="<%= live['img_url'] %>"  />
+          <div class="overlay"></div>
+          <div class="video-play"></div>
+        </a>
+        <div class="mes">
+          <div class="title" title="<%= live['title'] %>"><b><%= live['title'] %></b></div>
+          <div class="sub-mes">
+            <span class="nick">
+              <img src="/account.svg"><%= live['name'] %>
+            </span>
+            <span class="num">
+              <img src="/eye.svg" alt=""><%= convert_num(num) %>
+            </span>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 </div>
