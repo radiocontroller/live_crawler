@@ -1,11 +1,17 @@
 version: "3"
 services:
+  redis:
+    image: redis
+    container_name: crawler-redis
+    command: redis-server
+
   web:
     build: .
     container_name: crawler-web
-    command: bundle exec thin start -p 3000 -e production
+    command: sh web.sh
     volumes:
       - .:/crawler_with_sinatra
     ports:
       - "3000:3000"
-    network_mode: "host"
+    links:
+      - redis
