@@ -8,11 +8,4 @@ services:
       - .:/crawler_with_sinatra
     ports:
       - "3000:3000"
-    links:
-      - redis
-
-  redis:
-    image: redis
-    container_name: crawler-redis
-    volumes:
-      - .:/data
+    network_mode: "host"
