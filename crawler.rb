@@ -14,7 +14,6 @@ class Crawler
     @agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
     @agent.max_history = 0
     @agent.user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'
-    @redis = Redis.new(host: '127.0.0.1', port: '6379')
     @logger = Logger.new('*.log')
   end
 
@@ -127,9 +126,9 @@ class Crawler
   end
 
   def update_lives(list, cache_key)
-    @redis.del cache_key
+    Redis.current.del cache_key
     list.each do |data|
-      @redis.zadd(cache_key, convert_float(data['num']), JSON.generate(data['detail']))
+      Redis.current.zadd(cache_key, convert_float(data['num']), JSON.generate(data['detail']))
     end
   end
 

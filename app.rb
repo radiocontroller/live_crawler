@@ -11,6 +11,8 @@ require 'mechanize'
 class App < Sinatra::Base
   include WillPaginate::Sinatra::Helpers
 
+  Redis.current = Redis.new(host: 'crawler-redis')
+
   PLATFORMS = {
     douyu: '斗鱼',
     huya: '虎牙',
@@ -54,7 +56,7 @@ class App < Sinatra::Base
 
     KINDS.each do |kind, cache_key|
       get "/#{kind}" do
-        @lives = $redis.zrevrange(cache_key, 0, -1, with_scores: true)
+        @lives = Redis.current.zrevrange(cache_key, 0, -1, with_scores: true)
                        .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
         erb :index, layout: :'layout'
       end
@@ -62,7 +64,7 @@ class App < Sinatra::Base
       next if kind != 'lol'
 
       get '/' do
-        @lives = $redis.zrevrange(cache_key, 0, -1, with_scores: true)
+        @lives = Redis.current.zrevrange(cache_key, 0, -1, with_scores: true)
                        .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
         erb :index, layout: :'layout'
       end

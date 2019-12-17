@@ -5,4 +5,4 @@ crawler.pid
 /shared/*
 dump.rdb
 .DS_Store
-log/*.log
+log/cron.log
