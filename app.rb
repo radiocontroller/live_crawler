@@ -87,7 +87,8 @@ class App < Sinatra::Base
         File.join(DOMAINS[platform.to_sym], 'favicon.ico')
       end
 
-      def get_class_by(platform)
+      def get_class_by(platform_chinese)
+        platform = PLATFORMS.invert[platform_chinese]
         platform == 'qie' ? "#{platform}_" : platform
       end
     end
