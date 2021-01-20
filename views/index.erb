@@ -7,7 +7,7 @@
           <img src="<%= get_favicon_by(live['platform']) %>" alt="<%= live['platform'] %>">
           <span><%= live['platform'] %></span>
         </span>
-        <a href="<%= live['url'] %>" target="_blank">
+        <a href="<%= cookies[:admin] ? live['url'] : '' %>" target="_blank">
           <img src="<%= live['img_url'] %>"  class="lazy" data-original="<%= live['img_url'] %>"  />
           <div class="overlay"></div>
           <div class="video-play"></div>
