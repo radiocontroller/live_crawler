@@ -2,7 +2,7 @@
 
 source "https://gems.ruby-china.com"
 
-gem 'sinatra'
+gem 'sinatra', '2.2.0'
 gem 'json'
 gem 'redis'
 gem 'mechanize'
