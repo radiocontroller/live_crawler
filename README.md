@@ -5,8 +5,8 @@
 #### 2. 拉取代码
 
   ```
-  git clone https://github.com/radiocontroller/crawler_with_sinatra.git
-  cd crawler_with_sinatra
+  git clone https://github.com/radiocontroller/live_crawler.git
+  cd live_crawler
   ```
 
 #### 3. 进行构建镜像并启动容器
