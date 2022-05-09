@@ -39,7 +39,10 @@ class App < Sinatra::Base
 
     KINDS.each do |kind, cache_key|
       get "/#{kind}" do
-        @admin = request.cookies['admin']
+        # 通过该变量可以控制页面上的图片能否点击进入直播间（备案不通过时可以使用）
+        # @admin = request.cookies['admin']
+        @admin = true
+
         @lives = Redis.current.zrevrange(cache_key, 0, -1, with_scores: true)
                        .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
         erb :index, layout: :'layout'
@@ -48,7 +51,10 @@ class App < Sinatra::Base
       next if kind != 'lol'
 
       get '/' do
-        @admin = request.cookies['admin']
+        # 通过该变量可以控制页面上的图片能否点击进入直播间（备案不通过时可以使用）
+        # @admin = request.cookies['admin']
+        @admin = true
+
         @lives = Redis.current.zrevrange(cache_key, 0, -1, with_scores: true)
                        .paginate(page: params[:page] || 1, per_page: PAGE_SIZE)
         erb :index, layout: :'layout'
