@@ -10,7 +10,7 @@ services:
     container_name: crawler-web
     command: sh web.sh
     volumes:
-      - .:/crawler_with_sinatra
+      - .:/live_crawler
     ports:
       - "3000:3000"
     links:
