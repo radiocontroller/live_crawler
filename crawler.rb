@@ -104,27 +104,6 @@ class Crawler
     []
   end
 
-  def chushou_data(page_url)
-    kind = 'chushou'
-    page = @agent.get(page_url)
-    lives = page.search('div#liveContent a')
-    lives.map do |live|
-      {
-        'detail' => {
-          url: File.join(App::DOMAINS[kind.to_sym], live.attributes['href'].value),
-          img_url: live.search('img.liveImages')[0].attributes['data-imgsrc'].value,
-          name: live.search('span.livePlayerName')[0].attributes['title'].value,
-          title: live.search('span.videoName')[0].attributes['title'].value,
-          platform: App::PLATFORMS[kind.to_sym]
-        },
-        'num' => live.search('span.liveCount')[0].children[0].text
-      }
-    end
-  rescue StandardError => e
-    exception_log(e, "#{App::PLATFORMS[kind.to_sym]}: #{page_url}")
-    []
-  end
-
   def update_lives(list, cache_key)
     Redis.current.del cache_key
     list.each do |data|

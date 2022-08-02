@@ -16,14 +16,12 @@ class App < Sinatra::Base
   PLATFORMS = {
     douyu: '斗鱼',
     huya: '虎牙',
-    chushou: '触手',
     qie: '企鹅'
   }.freeze
 
   DOMAINS = {
     douyu: 'https://www.douyu.com',
     huya: 'https://www.huya.com',
-    chushou: 'https://chushou.tv',
     qie: 'https://egame.qq.com'
   }.freeze
 
